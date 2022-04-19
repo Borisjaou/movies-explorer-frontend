@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../../index.css' // глобальные стили страницы
+import './App.css' // глобальные стили страницы
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Promo from '../Main/Promo/Promo';

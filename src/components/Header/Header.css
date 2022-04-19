@@ -1,3 +1,43 @@
-.test {
+.header {
+  background-color: #073042;
+  display: flex;
+  justify-content: space-between;
+}
 
+.header__logo {
+  width: 38px;
+  height: 38px;
+  padding: 18px 14px;
+}
+
+.header__button {
+  font-size: 10px;
+  line-height: 16px;
+  font-weight: normal;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__reg-button {
+  text-decoration: none;
+  color: #FFFFFF;
+
+
+}
+
+.header__button_container {
+  background-color: #3DDC84;
+  height: 26px;
+  width: 54px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+}
+
+.header__login-button {
+  text-decoration: none;
+  color: #000000;
+  margin: auto 14px;
 }

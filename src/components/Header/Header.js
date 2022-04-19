@@ -6,14 +6,22 @@ import { Link, Route, Switch } from 'react-router-dom';
 function Header() {
   return (
 
-    <header className='test'>
-      <img src={logo} alt='Логотип' />
+    <header className='header'>
+      <img className='header__logo' src={logo} alt='Логотип' />
       <Switch>
         <Route exact path='/'>
-          <div>
-            <Link to='/signup'>Регистрация</Link>
-            <Link to='/signin'>Войти</Link>
+          <div className='header__button'>
+            <Link className='header__reg-button' to='/signup'>Регистрация</Link>
+
+            <Link className='header__login-button' to='/signin'><div className='header__button-container'>Войти</div></Link>
+
           </div>
+        </Route>
+        <Route path='/signin'>
+
+        </Route>
+        <Route path='/signout'>
+
         </Route>
       </Switch>
     </header>
