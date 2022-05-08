@@ -1,17 +1,17 @@
 import React from 'react';
-
+import '../../vendor/normalize.css';
 import './App.css' // глобальные стили страницы
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Promo from '../Main/Promo/Promo';
 import AboutProject from '../Main/AboutProject/AboutProject';
 import Techs from '../Main/Techs/Techs';
-import AboutMe from '../Main/AboutMe/AboutMe';
+import About from '../Main/About/About';
 import Portfolio from '../Main/Portfolio/Portfolio';
 
-import { Route, Switch, useHistory } from 'react-router';
-function App() {
 
+import { Route, Switch } from 'react-router';
+function App() {
 
 
   return (
@@ -22,7 +22,7 @@ function App() {
           <Promo />
           <AboutProject />
           <Techs />
-          <AboutMe />
+          <About />
           <Portfolio />
         </Route>
         <Route path='/movies'></Route>

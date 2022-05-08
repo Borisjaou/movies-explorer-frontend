@@ -13,7 +13,7 @@ function Header() {
           <div className='header__button'>
             <Link className='header__reg-button' to='/signup'>Регистрация</Link>
 
-            <Link className='header__login-button' to='/signin'><div className='header__button-container'>Войти</div></Link>
+            <Link className='header__login-button' to='/signin'><div className='header__button_container'>Войти</div></Link>
 
           </div>
         </Route>

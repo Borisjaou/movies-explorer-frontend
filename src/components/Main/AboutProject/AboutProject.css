@@ -1,52 +1,68 @@
 .project-about {
- /* margin: 70px 18px; */
   padding: 70px 18px;
   background-color: #202020;
 }
 
-.project-about__header {
+.project-about__border {
   border-bottom: 1px solid #FFFFFF;
+  color:#FFFFFF;
+  font-size: 18px;
+  padding-bottom: 30px;
 }
 
 .project-about__text {
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 11px;
   color:#FFFFFF;
+}
+
+.project-about__text_black {
+  font-size: 11px;
+  color:#000000;
+  background-color: #3DDC84;
 
 }
 
-.project-about__header-text {
+.project-about__header {
   font-size: 18px;
   line-height: 22px;
-  padding-bottom: 28px;
+  padding: 60px 0 16px 0;
   color:#FFFFFF;
 }
 
 .project-about__container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: minmax(100px, 140px) minmax(184px, 528px);
+  grid-template-rows: 35px 35px;
+  grid-template-areas:
+  "project-about__term project-about__date"
+  "l l2";
+  justify-items: stretch;
+  align-items: stretch;
+  padding-top: 60px
 }
 
-.first {
-  width: 140px;
-  height: 35px;
-  display: flex;
-  flex-direction: column;
+@media screen and (min-width: 768px) {
+  .project-about__container {
+    grid-template-columns: minmax(140px, 228px) minmax(528px, 912px);
+  }
+}
+
+.project-about__term {
+  color:#000000;
   background-color: #3DDC84;
-  justify-content: center;
-  align-items: center;
-
-
 }
-.second {
-  width: 530px;
-  height: 35px;
-  display: flex;
-  flex-direction: column;
-
+.project-about__date {
+  color: #FFFFFF;
   background-color: #303030;
-  justify-content: center;
-  align-items: center;
-
+}
+.term__text {
+  text-align: center;
+  font-size: 11px;
+  line-height: 35px;
+}
+.project-about__skill {
+  font-size: 11px;
+  color: #A0A0A0;
+  align-self: center;
+  justify-self: center;
 }

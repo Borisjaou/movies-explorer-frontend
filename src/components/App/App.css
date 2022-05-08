@@ -7,7 +7,10 @@
 .page {
   background-color:rgb(77, 75, 74);
   font-family: Inter, Arial, Helvetica, sans-serif;
-  margin: 0 auto;
   max-width: 1280px;
   min-width: 320px;
+}
+
+* {
+  margin: 0;
 }
