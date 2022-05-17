@@ -4,7 +4,7 @@
 }
 
 .project-about__border {
-  border-bottom: 1px solid #FFFFFF;
+  border-bottom: 1px solid #DADADA;
   color:#FFFFFF;
   font-size: 18px;
   padding-bottom: 30px;
@@ -42,6 +42,20 @@
 }
 
 @media screen and (min-width: 768px) {
+  .project-about {
+    padding: 90px 50px;
+    background-color: #202020;
+  }
+  .project-about__border {
+    padding-bottom: 23px;
+    font-size: 22px;
+  }
+  .project-about__header {
+    font-size: 20px;
+    line-height: 24px;
+    padding: 70px 0 93px 0;
+  }
+
   .project-about__container {
     grid-template-columns: minmax(140px, 228px) minmax(528px, 912px);
   }
@@ -51,6 +65,7 @@
   color:#000000;
   background-color: #3DDC84;
 }
+
 .project-about__date {
   color: #FFFFFF;
   background-color: #303030;
@@ -65,4 +80,12 @@
   color: #A0A0A0;
   align-self: center;
   justify-self: center;
+}
+
+
+@media screen and (min-width: 1280px) {
+  .project-about__header {
+    padding: 70px 0 110px 0;
+  }
+
 }

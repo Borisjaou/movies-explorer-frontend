@@ -22,8 +22,6 @@
 .header__reg-button {
   text-decoration: none;
   color: #FFFFFF;
-
-
 }
 
 .header__button_container {
@@ -40,4 +38,16 @@
   text-decoration: none;
   color: #000000;
   margin: auto 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .header__button_container {
+    height: 32px;
+    width: 76px;
+  }
+
+  .header__button {
+    font-size: 12px;
+  }
+
 }
