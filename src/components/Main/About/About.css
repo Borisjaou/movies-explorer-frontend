@@ -40,7 +40,7 @@
   font-size: 11px;
   color:#FFFFFF;
   padding-bottom: 20px;
-}
+ }
 
 .about__button-container {
   padding-top: 20px;
@@ -55,13 +55,74 @@
   padding: 0 26px 0 0;
 }
 
+
 @media screen and (min-width: 768px) {
+  .about {
+    padding: 90px 50px;
+  }
+
+  .about__header {
+    font-size: 22px;
+    padding: 0 0 23px 0;
+  }
+  .about__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 66px;
+  }
+  .about__name {
+    padding-bottom: 16px;
+    font-size: 40px;
+  }
+  .about__text {
+    font-size: 12px;
+  }
+  .about__button-container {
+  padding-top: 67px;
+  }
+
   .about__container {
     display: flex;
     flex-direction: row;
-
+    justify-content: space-between;
   }
   .about__photo-container {
     order: 1;
+    padding: 66px 0 0;
   }
+  .about__photo {
+    width: 255px;
+    height: 307px;
+  }
+  .about__description {
+    padding-top: 66px;
+    max-width: 364px;
+  }
+
+}
+@media screen and (min-width: 1280px) {
+  .about {
+    padding: 110px 70px 100px;
+  }
+  .about__name {
+    padding-bottom: 18px;
+    font-size: 50px;
+  }
+  .about__text {
+    font-size: 18px;
+    padding-bottom: 26px
+  }
+  .about__button-container {
+    padding-top: 73px;
+  }
+  .about__photo {
+    width: 270px;
+    height: 327px;
+  }
+  .about__description {
+    padding-top: 66px;
+    max-width: 600px;
+  }
+
 }

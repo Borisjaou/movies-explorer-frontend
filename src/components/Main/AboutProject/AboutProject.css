@@ -53,17 +53,24 @@
   .project-about__header {
     font-size: 20px;
     line-height: 24px;
-    padding: 70px 0 93px 0;
+    padding: 70px 0 22px 0;
   }
-
+  .project-about__description {
+    display: flex;
+    justify-content: space-between;
+  }
   .project-about__container {
     grid-template-columns: minmax(140px, 228px) minmax(528px, 912px);
+    padding-top: 93px;
   }
 }
 
 .project-about__term {
   color:#000000;
   background-color: #3DDC84;
+}
+.project-about__text {
+  font-size: 12px;
 }
 
 .project-about__date {
@@ -86,6 +93,18 @@
 @media screen and (min-width: 1280px) {
   .project-about__header {
     padding: 70px 0 110px 0;
+  }
+  .project-about__text {
+    font-size: 12px;
+  }
+  .project-about__header {
+    padding: 70px 0 26px 0;
+  }
+  .project-about__container {
+    padding-top: 110px;
+  }
+  .project-about__details {
+    max-width: 550px;
   }
 
 }

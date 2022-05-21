@@ -1,5 +1,5 @@
 .portfolio {
-  padding: 0 14px 70px 14px;
+  padding: 0 14px 70pxß;
   background-color: #202020;
   color: #FFFFFF;
 }
@@ -31,11 +31,43 @@
   text-decoration: none;
   font-size: 18px;
   line-height: 28px;
-
 }
-
-
 
 .portfolio__arrow {
   object-fit:contain;
+  width: 11px;
+  height: 11px;
+}
+@media screen and (min-width: 768px) {
+  .portfolio {
+    padding: 0 50px 90px;
+  }
+  .portfolio__header {
+    font-size: 18px;
+    padding-bottom: 30px;
+  }
+  .portfolio__link {
+    font-size: 28px;
+    line-height: 50px;
+  }
+  .portfolio__arrow {
+    width: 16px;
+    height: 16px;
+  }
+
+}
+
+@media screen and (min-width: 1280px) {
+  .portfolio {
+    padding: 0 70px 125px;
+  }
+  .portfolio__link {
+    font-size: 30px;
+    line-height: 50px;
+  }
+  .portfolio__arrow {
+    width: 18px;
+    height: 17px;
+  }
+
 }
