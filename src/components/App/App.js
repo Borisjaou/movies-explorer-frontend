@@ -8,6 +8,7 @@ import AboutProject from '../Main/AboutProject/AboutProject';
 import Techs from '../Main/Techs/Techs';
 import About from '../Main/About/About';
 import Portfolio from '../Main/Portfolio/Portfolio';
+import SearchForm from '../Movies/SearchForm/SearchForm';
 
 
 import { Route, Switch } from 'react-router';
@@ -18,14 +19,16 @@ function App() {
     <div className='page'>
       <Header />
       <Switch>
-        <Route path='/'>
+        <Route exact path='/'>
           <Promo />
           <AboutProject />
           <Techs />
           <About />
           <Portfolio />
         </Route>
-        <Route path='/movies'></Route>
+        <Route path='/movies'>
+          <SearchForm />
+        </Route>
         <Route path='/saved-movies'></Route>
         <Route path='/profile'></Route>
         <Route path='/signin'></Route>
