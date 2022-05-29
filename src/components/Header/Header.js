@@ -22,7 +22,19 @@ function Header() {
         <Route path='/signin'>
 
         </Route>
-        <Route path='/signout'>å
+        <Route path='/signout'>
+
+        </Route>
+        <Route path='/movies'>
+          <div className=''>
+
+          </div>
+
+        </Route>
+        <Route path='/profile'>
+
+        </Route>
+        <Route path='/saved-movies'>
 
         </Route>
       </Switch>
