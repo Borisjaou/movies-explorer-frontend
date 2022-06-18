@@ -1,0 +1,23 @@
+.navigation {
+
+}
+.navigation__menu {
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  background-color: #202020;
+
+  height: 100vw;
+  width: 320px; /*colculate size in different units*/
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 9rem 0;
+  z-index: 1;
+}
+.navigation__menu-list {
+  font-size: 18px;
+  line-height: 22px;
+  text-decoration: none;
+  color: #FFFFFF;
+}

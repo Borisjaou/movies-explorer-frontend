@@ -2,7 +2,7 @@ import React from 'react';
 import './MoviesCardList.css';
 import like from '../../../images/smallLikedButton.svg';
 import dislike from '../../../images/smallUnlikedButton.svg';
-/*delete after extraction movies-card */
+/*delete after extraction movies-card  Delete all cards after layout*/
 import test from '../../../images/test.jpg';
 import test2 from '../../../images/test2.png'
 import '../MoviesCard/MoviesCard.css';
@@ -43,8 +43,9 @@ function MoviesCardList() {
         </div>
         <div className='movies-card__duration'>movie duration</div>
       </figure>
-
-
+      <div className='movies-card__more'>
+        <button className='movies-card__more-button'>Ещё</button>
+      </div>
       {/* </div> */}
     </section>
   );

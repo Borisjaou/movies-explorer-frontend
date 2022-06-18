@@ -10,7 +10,9 @@ import About from '../Main/About/About';
 import Portfolio from '../Main/Portfolio/Portfolio';
 import SearchForm from '../Movies/SearchForm/SearchForm';
 import MovesCardList from '../Movies/MoviesCardList/MoviesCardList';
+import Preloader from '../Movies/Preloader/Preloader'
 
+import Navigation from '../Navigation/Navigation';
 
 import { Route, Switch } from 'react-router';
 function App() {
@@ -31,10 +33,13 @@ function App() {
           <SearchForm />
           <MovesCardList />
         </Route>
-        <Route path='/saved-movies'></Route>
+        <Route path='/saved-movies'>
+          <Preloader />
+        </Route>
         <Route path='/profile'></Route>
         <Route path='/signin'></Route>
         <Route path='/signup'></Route>
+        <Route path='/check'><Navigation /></Route>
         <Route path='*'>
 
         </Route>
