@@ -1,6 +1,6 @@
 import React from 'react';
 import './Navigation.css';
-
+import account from '../../images/icon__COLOR_icon-main.svg'
 
 function Navigation() {
   return (
@@ -12,7 +12,13 @@ function Navigation() {
         <a href='' className='navigation__menu-list'>Главная</a>
         <a href='' className='navigation__menu-list'>Фильмы</a>
         <a href='' className='navigation__menu-list'>Сохранённые</a>
+        <div >
+          <p className='navigation__account-icon'>Аккаунт</p>
+          <a><image className='navigation__account-icon' alt='иконка аккаунта' src={account} /></a>
+        </div>
+
       </nav>
+
       <div className='navigation__menu-overlay'></div>
     </section>
 
