@@ -18,9 +18,7 @@ function SearchForm() {
         <input type='checkbox' className='checkbox__input' />
         Короткометражки
         <span className='checkbox__slider' />
-
       </label>
-
     </section>
   );
 }
