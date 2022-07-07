@@ -1,6 +1,8 @@
 import React from 'react';
 import './Header.css';
 import logo from '../../images/logo.svg';
+import Navigation from '../Navigation/Navigation';
+
 import { Link, Route, Switch } from 'react-router-dom';
 
 function Header() {
@@ -20,22 +22,17 @@ function Header() {
           </div>
         </Route>
         <Route path='/signin'>
-
         </Route>
         <Route path='/signout'>
-
         </Route>
         <Route path='/movies'>
-          <div className=''>
-
-          </div>
-
+          <Navigation />
         </Route>
         <Route path='/profile'>
-
+          <Navigation />
         </Route>
         <Route path='/saved-movies'>
-
+          <Navigation />
         </Route>
       </Switch>
     </header>

@@ -5,41 +5,37 @@ import account from '../../images/icon__COLOR_icon-main.svg'
 function Navigation() {
   return (
     <section className='navigation'>
-      <a href='' className='navigation__menu-button'>
-        <spun className=''></spun>
-      </a>
-      <nav className='navigation__menu'>
-        <a href='' className='navigation__menu-list'>Главная</a>
-        <a href='' className='navigation__menu-list'>Фильмы</a>
-        <a href='' className='navigation__menu-list'>Сохранённые</a>
-        <div >
-          <p className='navigation__account-icon'>Аккаунт</p>
-          <a><image className='navigation__account-icon' alt='иконка аккаунта' src={account} /></a>
+      <input type='checkbox' id='menu' />
+      <label htmlFor='menu' className='checkbox-button'>
+        <span className='line line-main' />
+        <span className='line line-split' />
+      </label>
+      <nav className='navigation-menu'>
+        <div className='menu__link'>
+          <a href='/' className='navigation-menu-list'>Главная</a>
+          <a href='/movies' className='navigation-menu-list'>Фильмы</a>
+          <a href='/saved-movies' className='navigation-menu-list'>Сохранённые</a>
         </div>
-
+        <div className='menu__account-container'>
+          <a href='/profile' className='menu__account-link'>Аккаунт</a>
+          <a href='/profile'><div className='account-image'><img src={account} alt='иконка аккаунта' /></div></a>
+        </div>
       </nav>
 
-      <div className='navigation__menu-overlay'></div>
+      <div className='navigation-widescreen'>
+        <div className='navigation__link'>
+          <a href='/movies' className='navigation__list'>Фильмы</a>
+          <a href='/saved-movies' className='navigation__list'>Сохранённые</a>
+        </div>
+        <div className='menu__account-container'>
+          <a href='/profile' className='menu__account-link'>Аккаунт</a>
+          <a href='/profile'><div className='account-image'><img src={account} alt='иконка аккаунта' /></div></a>
+        </div>
+
+      </div>
+
     </section>
-
-    /*     <section >
-          <div class="burger-menu">
-            <a href="" class="burger-menu_button">
-              <spun class="burger-menu_lines"></spun>
-            </a>
-            <nav class="burger-menu_nav">
-              <a href="#section-1" class="burger-menu_link">Секция 1</a>
-              <a href="#section-2" class="burger-menu_link">Секция 2</a>
-              <a href="#section-3" class="burger-menu_link">Секция 3</a>
-              <a href="#section-4" class="burger-menu_link">Секция 4</a>
-              <a href="#section-5" class="burger-menu_link">Секция 5</a>
-            </nav>
-            <div class="burger-menu_overlay"></div>
-          </div>
-
-
-        </section> */
   );
 }
-export default Navigation;
 
+export default Navigation;
