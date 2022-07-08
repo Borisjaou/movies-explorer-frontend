@@ -45,6 +45,8 @@
   font-size: 12px;
   font-weight: 400;
   line-height: 57px;
+  text-align: center;
+
 }
 @media screen and (min-width: 768px) {
   .techs {
@@ -60,7 +62,6 @@
   }
   .techs__title {
     font-size: 50px;
-    text-align: center;
     padding: 80px 0 22px 0;
   }
 
@@ -69,7 +70,6 @@
   }
   .techs__cell-text {
     font-size: 14px;
-    text-align: center;
   }
 }
 @media screen and (min-width: 1280px) {
@@ -86,7 +86,6 @@
   .techs__cell-text {
     font-size: 14px;
     line-height: 60px;
-    text-align: center;
   }
   .techs__text {
     font-size: 14px;

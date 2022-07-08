@@ -9,7 +9,7 @@ function Header() {
   return (
 
     <header className='header'>
-      <img className='header__logo' src={logo} alt='Логотип' />
+      <a href='/' className='header__logo-button'><img src={logo} alt='Логотип' /></a>
       <Switch>
         <Route exact path='/'>
           <div className='header__button'>

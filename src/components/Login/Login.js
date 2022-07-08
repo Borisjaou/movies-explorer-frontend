@@ -6,7 +6,7 @@ function Login() {
   return (
     <section className='login'>
       <div className='login-container'>
-        <img src={logo} />
+        <a href='/' className='logo-button'><img src={logo} /></a>
         <h1 className='login__header'>Рады видеть!</h1>
         <form>
           <div className='login__input-container'>

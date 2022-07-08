@@ -29,6 +29,11 @@
   color: #8B8B8B;
   padding-bottom: 5px;
 }
+
+.logo-button {
+  padding: 0;
+}
+
 .login__input-text {
   font-size: 14px;
   line-height: 17px;
