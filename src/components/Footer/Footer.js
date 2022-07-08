@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './Footer.css';
 
 function Footer() {
@@ -11,12 +12,11 @@ function Footer() {
           <a className='footer__link' href='https://github.com/Borisjaou' target='_blank' rel='noreferrer'>Github</a>
           <a className='footer__link' href='https://www.facebook.com/BorisKimVLG' target='_blank' rel='noreferrer'>Facebook</a>
         </div>
-
         <p className='footer__text'>
           &copy; {new Date().getFullYear()}
         </p>
       </div>
-    </footer>
+    </footer >
   );
 }
 export default Footer;

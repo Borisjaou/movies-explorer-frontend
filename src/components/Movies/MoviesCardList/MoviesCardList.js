@@ -10,6 +10,7 @@ import '../MoviesCard/MoviesCard.css';
 
 function MoviesCardList() {
   return (
+
     <section className='card-list'>
       <div className='card-list__container'>
         <figure className='movies-card'>
@@ -48,7 +49,6 @@ function MoviesCardList() {
       <div className='movies-card__more'>
         <button className='movies-card__more-button'>Ещё</button>
       </div>
-
     </section>
   );
 }

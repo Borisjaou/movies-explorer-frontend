@@ -1,20 +1,27 @@
 import React from 'react';
 import './Profile.css';
-import { Link, Route, Switch } from 'react-router-dom';
 
 function Profile() {
   return (
 
     <section className='profile'>
-      <h1 className='profile__header'>Привет, СvcxvgsdfgdfgdsfgdfюdsfsdfsdfдаПропс!</h1>
+      <h1 className='profile__header'>Привет, Очень длинное имя для проверки Потом тут будет пропс!</h1>
       <form className='profile__form'>
-        <label>Имя<input className='profile__input'></input></label>
-        <label>E-mail<input className='profile__input'></input></label>
-
+        <div className='profile__form-field '>
+          <label htmlFor='name'>Имя</label>
+          <input className='profile__input' type='text' id='name' />
+          {/* <span ></span> */}
+        </div>
+        <span className='form-undeline' />
+        <div className='profile__form-field'>
+          <label htmlFor='email'>E-mail</label>
+          <input className='profile__input' type='email' id='email' />
+          {/*  <span /> */}
+        </div>
       </form>
-      <div>
-        <button>Редактировать</button>
-        <button>Выйти из аккаунта</button>
+      <div className='profile__button-container'>
+        <button className='profile__button profile__edit-button' type='submit'>Редактировать</button>
+        <button className='profile__button profile__quit-button' type='button'>Выйти из аккаунта</button>
       </div>
     </section>
   );

@@ -16,40 +16,51 @@ import Navigation from '../Navigation/Navigation';
 import Profile from '../Profile/Profile';
 
 import { Route, Switch } from 'react-router';
+import PageNotFound from '../PageNotFound/PageNotFound';
 function App() {
 
 
   return (
+
     <div className='page'>
-      <Header />
+      {/* <Header /> */}
       <Switch>
         <Route exact path='/'>
+          <Header />
           <Promo />
           <AboutProject />
           <Techs />
           <About />
           <Portfolio />
+          <Footer />
         </Route>
         <Route path='/movies'>
+          <Header />
           <SearchForm />
           <MovesCardList />
+          <Footer />
         </Route>
         <Route path='/saved-movies'>
-          <Preloader />
+          <Header />
+          <MovesCardList />
+          <Footer />
         </Route>
         <Route path='/profile'>
+          <Header />
           <Profile />
         </Route>
         <Route path='/signin'></Route>
         <Route path='/signup'></Route>
         <Route path='/check'><Navigation /></Route>
         <Route path='*'>
-
+          <PageNotFound />
         </Route>
 
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </div >
+
+
   );
 }
 
