@@ -37,6 +37,17 @@
   border: none;
   background-color: #313131;
 }
+.movies-card__delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: none;
+  background-color: #313131;
+}
 
 .movies-card__duration {
   display: flex;

@@ -14,6 +14,8 @@ import Preloader from '../Movies/Preloader/Preloader'
 
 import Navigation from '../Navigation/Navigation';
 import Profile from '../Profile/Profile';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
 
 import { Route, Switch } from 'react-router';
 import PageNotFound from '../PageNotFound/PageNotFound';
@@ -49,8 +51,12 @@ function App() {
           <Header />
           <Profile />
         </Route>
-        <Route path='/signin'></Route>
-        <Route path='/signup'></Route>
+        <Route path='/signin'>
+          <Login />
+        </Route>
+        <Route path='/signup'>
+          <Register />
+        </Route>
         <Route path='/check'><Navigation /></Route>
         <Route path='*'>
           <PageNotFound />
