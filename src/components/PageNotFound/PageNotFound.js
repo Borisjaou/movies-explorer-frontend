@@ -1,6 +1,6 @@
 import './PageNotFound.css';
 
-function PageNotFound(props) {
+function PageNotFound(/* props */) {
   return (
     <section className='page404'>
       <div className='page404__message'>

@@ -1,13 +1,11 @@
 import React from 'react';
+import { Link, Route, Switch } from 'react-router-dom';
 import './Header.css';
 import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 
-import { Link, Route, Switch } from 'react-router-dom';
-
 function Header() {
   return (
-
     <header className='header'>
       <a href='/' className='header__logo-button'><img src={logo} alt='Логотип' /></a>
       <Switch>

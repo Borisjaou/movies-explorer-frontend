@@ -1,7 +1,6 @@
 import React from 'react';
-import './Portfolio.css'
+import './Portfolio.css';
 import arrow from '../../../images/anchor_arrow_large.svg';
-
 
 function Portfolio() {
   return (

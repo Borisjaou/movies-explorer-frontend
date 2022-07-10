@@ -1,6 +1,7 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import '../../vendor/normalize.css';
-import './App.css' // глобальные стили страницы
+import './App.css'; // глобальные стили страницы
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Promo from '../Main/Promo/Promo';
@@ -10,20 +11,16 @@ import About from '../Main/About/About';
 import Portfolio from '../Main/Portfolio/Portfolio';
 import SearchForm from '../Movies/SearchForm/SearchForm';
 import MovesCardList from '../Movies/MoviesCardList/MoviesCardList';
-import Preloader from '../Movies/Preloader/Preloader'
+/* import Preloader from '../Movies/Preloader/Preloader' */
 
 import Navigation from '../Navigation/Navigation';
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
-
-import { Route, Switch } from 'react-router';
 import PageNotFound from '../PageNotFound/PageNotFound';
+
 function App() {
-
-
   return (
-
     <div className='page'>
       {/* <Header /> */}
       <Switch>
@@ -65,7 +62,6 @@ function App() {
       </Switch>
       {/* <Footer /> */}
     </div >
-
 
   );
 }

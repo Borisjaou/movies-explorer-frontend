@@ -1,18 +1,15 @@
 import React from 'react';
 import './MoviesCardList.css';
-import like from '../../../images/smallLikedButton.svg';
-/*delete after extraction movies-card  Delete all cards after layout*/
+/* import like from '../../../images/smallLikedButton.svg'; */
+/* delete after extraction movies-card  Delete all cards after layout */
 import test from '../../../images/test.jpg';
-import test2 from '../../../images/test2.png'
+import test2 from '../../../images/test2.png';
 import '../MoviesCard/MoviesCard.css';
-import cross from '../../../images/icon-delete.svg'
+import cross from '../../../images/icon-delete.svg';
 import dislike from '../../../images/smallUnlikedButton.svg';
-
-
 
 function MoviesCardList() {
   return (
-
     <section className='card-list'>
       <div className='card-list__container'>
         <figure className='movies-card'>

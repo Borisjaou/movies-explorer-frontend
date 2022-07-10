@@ -1,7 +1,7 @@
 import React from 'react';
 import './SearchForm.css';
-import searchButton from '../../../images/searchButton.svg'
-import searchIcon from '../../../images/searchIcon.svg'
+import searchButton from '../../../images/searchButton.svg';
+import searchIcon from '../../../images/searchIcon.svg';
 
 function SearchForm() {
   return (

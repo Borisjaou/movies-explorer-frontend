@@ -1,6 +1,6 @@
 import React from 'react';
 import './Navigation.css';
-import account from '../../images/icon__COLOR_icon-main.svg'
+import account from '../../images/icon__COLOR_icon-main.svg';
 
 function Navigation() {
   return (

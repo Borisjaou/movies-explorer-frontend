@@ -1,6 +1,6 @@
 import React from 'react';
-import './Promo.css'
-import globeLogo from '../../../images/big_logo.svg'
+import './Promo.css';
+import globeLogo from '../../../images/big_logo.svg';
 
 function Promo() {
   return (

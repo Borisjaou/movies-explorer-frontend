@@ -1,12 +1,12 @@
 import React from 'react';
 import './Login.css';
-import logo from '../../images/logo.svg'
+import logo from '../../images/logo.svg';
 
 function Login() {
   return (
     <section className='login'>
       <div className='login-container'>
-        <a href='/' className='logo-button'><img src={logo} /></a>
+        <a href='/' className='logo-button'><img src={logo} alt='логотип' /></a>
         <h1 className='login__header'>Рады видеть!</h1>
         <form>
           <div className='login__input-container'>
