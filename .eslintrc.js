@@ -19,7 +19,7 @@ module.exports = {
     'react',
   ],
   rules: {
-    'eslint no-underscore-dangle': ['error', { allow: ['_id'] }],
+    'no-underscore-dangle': ['error', { allow: ['_id'] }],
     semi: ['error', 'always'],
     quotes: ['error', 'single'],
   },
