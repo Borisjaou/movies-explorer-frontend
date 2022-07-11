@@ -1,7 +1,6 @@
-/* eslint-disable import/prefer-default-export */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable class-methods-use-this */
+/* eslint no-underscore-dangle: ["error", { "allowAfterThisConstructor": true }] */
 /* Запросы к API */
+
 class Api {
   constructor(config) {
     this.url = config.baseUrl;

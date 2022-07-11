@@ -1,6 +1,6 @@
 .techs {
   padding: 60px 18px 70px;
-  background-color: #272727;
+  background-color: #202020;
   color: #FFFFFF;
 }
 
@@ -50,6 +50,7 @@
 }
 @media screen and (min-width: 768px) {
   .techs {
+    background-color: #272727;
     padding: 90px 50px;
   }
   .techs__text {

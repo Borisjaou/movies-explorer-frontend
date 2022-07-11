@@ -21,8 +21,7 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
   return (
-    <div className='page'>
-      {/* <Header /> */}
+    <main className='page'>
       <Switch>
         <Route exact path='/'>
           <Header />
@@ -41,6 +40,7 @@ function App() {
         </Route>
         <Route path='/saved-movies'>
           <Header />
+          <SearchForm />
           <MovesCardList />
           <Footer />
         </Route>
@@ -58,11 +58,8 @@ function App() {
         <Route path='*'>
           <PageNotFound />
         </Route>
-
       </Switch>
-      {/* <Footer /> */}
-    </div >
-
+    </main >
   );
 }
 

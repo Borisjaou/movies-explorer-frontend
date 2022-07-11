@@ -1,16 +1,15 @@
 .register {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   background-color: #202020;
   color: #FFFFFF;
   padding: 56px 30px 30px;
 }
-.register-container {
-  align-self: center;
-}
+
 .logo-button {
   padding: 0;
 }
+
 .register__header {
   font-size: 24px;
   line-height: 29px;
@@ -31,6 +30,7 @@
   color: #8B8B8B;
   padding-bottom: 5px;
 }
+
 .register__input-text {
   font-size: 14px;
   line-height: 17px;
@@ -42,6 +42,7 @@
   outline: none;
   color: #FFFFFF;
 }
+
 .register__input-error {
   line-height: 24px;
   color: #EE3465;
@@ -76,15 +77,17 @@
 @media screen and (min-width: 768px) {
   .register {
     padding: 232px 186px;
-    align-items: flex-start;
   }
+
   .register__header {
     padding:40px 0;
   }
+
   .register__input-container {
     padding-bottom: 134px;
     width: 396px;
   }
+
   .register__submit-button {
     line-height: 15px;
     width: 396px;
