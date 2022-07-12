@@ -1,0 +1,135 @@
+.search {
+  padding: 92px 14px 50px;
+  background-color: #202020;
+}
+.search__container {
+  position: relative;
+  display: flex;
+  justify-content: space-between ;
+  align-items: center;
+  border-bottom: 1px solid #424242;
+  color:#424242;
+  font-size: 18px;
+  line-height: 22px;
+  padding-bottom: 9px;
+}
+.search__icon {
+  display: none;
+}
+.search__input {
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  font-size: 14px;
+  width: 70%;
+  color: #FFFFFF;
+  background-color: #202020;
+  border: none;
+  outline: none;
+}
+.search__input:focus {
+  box-shadow: 0 0 0 1px #8b8b8b;
+}
+.search__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85px;
+  height: 34px;
+  border-radius: 48px;
+  cursor: pointer;
+  border: none;
+  background-color: #4285F4;
+  padding: 0;
+}
+
+.checkbox__option {
+  display: block;
+  width: 87px;
+  margin: 42px auto 0;
+}
+
+.checkbox {
+  padding-left: 13px;
+  position: relative;
+  display: block;
+  color: #FFFFFF;
+  font-size: 11px;
+  line-height: 18px;
+}
+
+.checkbox__input {
+  position: absolute;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.checkbox__slider {
+  position: absolute;
+  width: 36px;
+  height: 20px;
+  margin-left: -30px;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  -webkit-transition: .4s;
+  border-radius: 20px;
+}
+
+.checkbox__slider:before {
+  position: absolute;
+  content: '';
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #FFFFFF;
+  transition: .4s;
+  -webkit-transition: .4s;
+  border-radius: 50%;
+}
+
+.checkbox__input:checked + .checkbox__slider {
+  background-color: #3DDC84;
+}
+
+.checkbox__input:checked + .checkbox__slider:before {
+  transform: translateX(16px);
+}
+
+@media screen and (min-width: 768px) {
+  .search {
+    padding: 86px 30px 61px;
+  }
+  .search__container{
+    padding-bottom: 15px;
+  }
+  .search__icon {
+    display: block;
+  }
+  .checkbox__option {
+    width:113px;
+    margin: 30px auto 0;
+  }
+  .checkbox {
+    font-size: 14px;
+  }
+  .search__input {
+    text-align: center;
+    font-size: 28px;
+  }
+
+}
+@media screen and (min-width: 1280px) {
+  .search {
+    padding: 70px 70px 48px;
+  }
+}
+
+
+

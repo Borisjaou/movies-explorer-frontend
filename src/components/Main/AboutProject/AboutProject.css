@@ -1,0 +1,125 @@
+.project-about {
+  padding: 70px 18px;
+  background-color: #202020;
+}
+
+.project-about__border {
+  border-bottom: 1px solid #DADADA;
+  color:#FFFFFF;
+  font-size: 18px;
+  padding-bottom: 30px;
+}
+
+.project-about__text {
+  font-size: 11px;
+  color:#FFFFFF;
+
+}
+
+.project-about__text_black {
+  font-size: 11px;
+  color:#000000;
+  background-color: #3DDC84;
+
+}
+
+.project-about__header {
+  font-size: 18px;
+  line-height: 22px;
+  padding: 60px 0 16px 0;
+  color:#FFFFFF;
+}
+
+.project-about__container {
+  display: grid;
+  grid-template-columns: minmax(100px, 140px) minmax(184px, 528px);
+  grid-template-rows: 35px 35px;
+  grid-template-areas:
+  "project-about__term project-about__date"
+  "l l2";
+  justify-items: stretch;
+  align-items: stretch;
+  padding-top: 60px
+}
+
+.project-about__term {
+  color:#000000;
+  background-color: #3DDC84;
+}
+
+.project-about__text {
+  font-size: 12px;
+}
+
+.project-about__date {
+  color: #FFFFFF;
+  background-color: #303030;
+}
+
+.term__text {
+  text-align: center;
+  font-size: 11px;
+  line-height: 35px;
+}
+
+.project-about__skill {
+  font-size: 11px;
+  color: #A0A0A0;
+  align-self: center;
+  justify-self: center;
+}
+
+@media screen and (min-width: 768px) {
+  .project-about {
+    padding: 90px 50px;
+    background-color: #202020;
+  }
+
+  .project-about__border {
+    padding-bottom: 23px;
+    font-size: 22px;
+  }
+
+  .project-about__header {
+    font-size: 20px;
+    line-height: 24px;
+    padding: 70px 0 22px 0;
+  }
+
+  .project-about__description {
+    display: flex;
+    justify-content: space-between;
+  }
+  .project-about__container {
+    grid-template-columns: minmax(140px, 228px) minmax(528px, 912px);
+    padding-top: 93px;
+  }
+  .project-about__details:first-child {
+    padding-right: 30px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .project-about__header {
+    padding: 70px 0 110px 0;
+  }
+
+  .project-about__text {
+    font-size: 12px;
+  }
+
+  .project-about__header {
+    padding: 70px 0 26px 0;
+  }
+
+  .project-about__container {
+    padding-top: 110px;
+  }
+
+  .project-about__details {
+    max-width: 550px;
+  }
+  .project-about__details:first-child {
+    padding-right: 40px;
+  }
+}

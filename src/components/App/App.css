@@ -1,0 +1,16 @@
+/* @import url(../../vendor/fonts/inter.css); */
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  src: url('../../vendor/fonts/Inter-Regular.woff');
+}
+.page {
+  background-color:rgb(77, 75, 74);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  max-width: 1280px;
+  min-width: 320px;
+}
+
+* {
+  margin: 0;
+}
