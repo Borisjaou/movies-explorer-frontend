@@ -1,8 +1,11 @@
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable class-methods-use-this */
+
 /* Запросы к сервису beatfilm-movies */
 
 /*   Поиска по фильмам. Поиск по названию
   На запрос приходит весь список фильмов, я должен отфильтровать и осуществить поиск. Для этого нужно написать отдельный компонент */
-
 
 class Search {
   constructor(config) {
@@ -33,4 +36,4 @@ const options = {
   },
 };
 
-export const auth = new Search(options);
+export const search = new Search(options);

@@ -8,10 +8,11 @@
   - Карточка фильма.
   - Лайк карточки. сохраняет на наш сервер карточку.
   - Дизлайк карточкию. Удаляет ее из "Сохраненных", т.е. удаляем ее с сервера.
+
   - Регистрация пользователя
   - Авторизация пользователя
   - Редакитрование пользователя
-  - Сохраненные фильмы находятся в /movies
+
 
 */
 
@@ -52,8 +53,50 @@ class Api {
   }
 
   editProfile(name, email) {
-    return fetch()
+    return fetch(`${this.url}/${'users'}/${'me'}`, {
+      method: 'PATCH',
+      headers: this._headers,
+      credentials: 'include',
+      body: JSON.stringify({
+        name,
+        email,
+      }),
+    }).then(this._checkResponse);
   }
+
+  /* country, director, duration, year, description, image, trailerLink, thumbail, movieId, nameRU, nameEN */
+
+  createMovie(...) {
+    return fetch(`${this.url}/${'movies'}`, {
+      method: 'POST',
+      headers: this._headers,
+      credentials: 'include',
+      body: JSON.stringify({
+        country,
+        director,
+        duration,
+        year,
+        description,
+        image,
+        trailerLink,
+        thumbail,
+        movieId,
+        nameRU,
+        nameEN,
+      }),
+    }).then(this._checkResponse);
+  }
+
+  deleteCard(id) {
+    return fetch(`${this.url}/${cards}`, {
+      method: 'DELETE',
+      headers: this._headers,
+      credentials: 'include',
+    }).then(this._checkResponse);
+  }
+
+
+
 
 } // end of Api
 
