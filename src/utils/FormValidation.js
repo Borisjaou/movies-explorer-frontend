@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { omit } from 'lodash';
 import emailValidator from 'email-validator';
 
@@ -7,6 +7,7 @@ import emailValidator from 'email-validator';
 export function useForm(callback) {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
+  const [isInputValid, setIsInputValid] = useState(false);
 
   const validate = (e, name, value) => {
     switch (name) {
@@ -32,8 +33,22 @@ export function useForm(callback) {
           const newObj = omit(errors, 'email');
           setErrors(newObj);
         }
+        break;
 
-      // дописать кейс для пароля
+      case 'password':
+        if (
+          // eslint-disable-next-line prefer-regex-literals
+          !new RegExp(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/).test(value) && value.length < 8
+        ) {
+          setErrors({
+            ...errors,
+            password: 'Пароль должен содержать не менее 8 символов',
+          });
+        } else {
+          const newObj = omit(errors, 'password');
+          setErrors(newObj);
+        }
+        break;
 
       default:
         break;
@@ -44,8 +59,8 @@ export function useForm(callback) {
     // to stop default events
     e.persist();
 
-    const name = e.target.name;
-    const value = e.target.value;
+    const { name } = e.target;
+    const { value } = e.target;
 
     validate(e, name, value);
 

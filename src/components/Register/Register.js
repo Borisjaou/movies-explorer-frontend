@@ -4,7 +4,6 @@ import './Register.css';
 import logo from '../../images/logo.svg';
 
 function Register() {
-
   /*   const formLogin = () => {
       console.log('Callback function whem form is is submited');
       console.log('Form Values', values);
@@ -16,7 +15,7 @@ function Register() {
     errors,
     handleSubmit,
   } = useForm();
-  console.log(values)
+  console.log(values); // Delete after Testing
   return (
     <section className='register'>
       <form onSubmit={handleSubmit}>
@@ -43,8 +42,14 @@ function Register() {
             required />
           <span className='register__input-error'>{errors.email}</span>
           <label className='register__secondary-text' htmlFor='password'>Пароль</label>
-          <input className='register__input-text' id='password' type='password' required />
-          <span className='register__input-error'>Что-то пошло не так...</span>
+          <input
+            onChange={handleChange}
+            name='password'
+            className='register__input-text'
+            id='password'
+            type='password'
+            required />
+          <span className='register__input-error'>{errors.password}</span>
         </div>
         <div className='register__button-container register__text'>
           <button className='register__submit-button' type='submit'>Зарегистрироваться</button>
