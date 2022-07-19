@@ -67,14 +67,15 @@
   border-radius: 3px;
   border: none;
   text-align: center;
-  margin-bottom: 14px
+  margin-bottom: 14px;
+  cursor: pointer;
 }
 
 .login__enter-button {
   border: none;
   background-color: #202020;
   color: #4285F4;
-
+  cursor: pointer;
 }
 @media screen and (min-width: 768px) {
   .login {

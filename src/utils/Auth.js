@@ -51,8 +51,6 @@ class Auth {
       credentials: 'include',
     }).then(this._checkResponse);
   }
-
-
 } // end of Api
 
 const options = {

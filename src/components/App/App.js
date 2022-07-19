@@ -18,6 +18,8 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
+// import { auth } from '../../utils/Auth';
+// import { useForm, useFormWithValidation } from '../../utils/FormValidation';
 
 function App() {
   return (

@@ -46,7 +46,7 @@
 .register__input-error {
   line-height: 24px;
   color: #EE3465;
-  visibility: hidden;
+
 }
 
 .register__button-container {
@@ -65,14 +65,15 @@
   border-radius: 3px;
   border: none;
   text-align: center;
-  margin-bottom: 14px
+  margin-bottom: 14px;
+  cursor: pointer;
 }
 
 .register__enter-button {
   border: none;
   background-color: #202020;
   color: #4285F4;
-
+  cursor: pointer;
 }
 @media screen and (min-width: 768px) {
   .register {
@@ -91,10 +92,11 @@
   .register__submit-button {
     line-height: 15px;
     width: 396px;
-    margin-bottom: 16px
+    margin-bottom: 16px;
+    cursor: pointer;
   }
 
   .register__text {
-    font-size: 14px
+    font-size: 14px;
   }
 }
