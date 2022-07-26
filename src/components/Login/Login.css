@@ -48,7 +48,9 @@
 .login__input-error {
   line-height: 24px;
   color: #EE3465;
-  visibility: hidden;
+  font-size: 10px;
+  line-height: 12px;
+  padding-top: 6px;
 }
 
 .login__button-container {
@@ -71,12 +73,18 @@
   cursor: pointer;
 }
 
+.login__submit-button:disabled {
+  background-color: #424242;
+  cursor: default;
+}
+
 .login__enter-button {
   border: none;
   background-color: #202020;
   color: #4285F4;
   cursor: pointer;
 }
+
 @media screen and (min-width: 768px) {
   .login {
     padding: 232px 186px;

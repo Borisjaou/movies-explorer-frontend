@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import '../../vendor/normalize.css';
 import './App.css'; // глобальные стили страницы
 import Header from '../Header/Header';
@@ -11,6 +11,7 @@ import About from '../Main/About/About';
 import Portfolio from '../Main/Portfolio/Portfolio';
 import SearchForm from '../Movies/SearchForm/SearchForm';
 import MovesCardList from '../Movies/MoviesCardList/MoviesCardList';
+import { auth } from '../../utils/Auth';
 /* import Preloader from '../Movies/Preloader/Preloader' */
 
 import Navigation from '../Navigation/Navigation';
@@ -22,6 +23,29 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 // import { useForm, useFormWithValidation } from '../../utils/FormValidation';
 
 function App() {
+  const history = useHistory();
+  const [errorMessage, setErrorMessage] = useState('');
+  function handleRegister({ name, email, password }) {
+    auth
+      .registerUser(name, password, email)
+      .then(() => {
+        history.push('/signin');
+      })
+      .catch(() => {
+        setErrorMessage('Что-то пошло не так');
+      });
+  }
+  function handleLoginUser({ email, password }) {
+    auth
+      .loginUser(password, email)
+      .then(() => {
+        history.push('/movies');
+      })
+      .catch(() => {
+        setErrorMessage('Что-то пошло не так');
+      });
+  }
+
   return (
     <main className='page'>
       <Switch>
@@ -51,10 +75,10 @@ function App() {
           <Profile />
         </Route>
         <Route path='/signin'>
-          <Login />
+          <Login onRegister={handleLoginUser} errorMessage={errorMessage} />
         </Route>
         <Route path='/signup'>
-          <Register />
+          <Register onRegister={handleRegister} errorMessage={errorMessage} />
         </Route>
         <Route path='/check'><Navigation /></Route>
         <Route path='*'>

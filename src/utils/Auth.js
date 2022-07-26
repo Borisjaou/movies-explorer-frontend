@@ -54,7 +54,7 @@ class Auth {
 } // end of Api
 
 const options = {
-  baseUrl: 'your-movie-explorer.nomoredomains.work',
+  baseUrl: 'https://your-movie-explorer.nomoredomains.work',
   headers: {
     'Content-Type': 'application/json',
   },
