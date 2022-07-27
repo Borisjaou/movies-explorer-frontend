@@ -1,7 +1,7 @@
 import React from 'react';
 import './Profile.css';
 
-function Profile() {
+function Profile(props) {
   return (
 
     <section className='profile'>
@@ -22,7 +22,7 @@ function Profile() {
         </div>
         <div className='profile__button-container'>
           <button className='profile__button profile__edit-button' type='submit'>Редактировать</button>
-          <button className='profile__button profile__quit-button' type='button'>Выйти из аккаунта</button>
+          <button onClick={props.signOut} className='profile__button profile__quit-button' type='button'>Выйти из аккаунта</button>
         </div>
       </form>
     </section>

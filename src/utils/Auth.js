@@ -17,6 +17,13 @@ class Auth {
     return Promise.reject(res.status);
   }
 
+  getUserInfo() {
+    return fetch(`${this.url}/${'users'}/${'me'}`, {
+      headers: this._headers,
+      credentials: 'included',
+    }).then(this._checkResponse);
+  }
+
   registerUser(name, password, email) {
     return fetch(`${this.url}/${'signup'}`, {
       method: 'POST',
