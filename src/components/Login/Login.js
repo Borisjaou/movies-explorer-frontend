@@ -1,5 +1,6 @@
 import React from 'react';
-import { useForm } from '../../utils/FormValidation';
+import { Link } from 'react-router-dom';
+import useForm from '../../utils/FormValidation';
 import './Login.css';
 import logo from '../../images/logo.svg';
 
@@ -7,7 +8,7 @@ function Login(props) {
   const {
     handleChange,
     errors,
-    handleSubmit,
+    handleLoginSubmit,
     isLoginValid,
   } = useForm(props);
   return (
@@ -15,7 +16,7 @@ function Login(props) {
       <div className='login-container'>
         <a href='/' className='logo-button'><img src={logo} alt='логотип' /></a>
         <h1 className='login__header'>Рады видеть!</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLoginSubmit}>
           <div className='login__input-container'>
             <label className='login__secondary-text' htmlFor='email'>E-mail</label>
             <input
@@ -45,7 +46,7 @@ function Login(props) {
               className='login__submit-button'
               type='submit'
             >Войти</button>
-            <p className='login__secondary-text login__text'>Ещ не зарегестрированы?<button className='login__enter-button login__text' type='button'>Регистрация</button></p>
+            <p className='login__secondary-text login__text'>Ещ не зарегестрированы?<Link to='signup' className='login__enter-button login__text' >Регистрация</Link></p>
           </div>
         </form>
       </div>

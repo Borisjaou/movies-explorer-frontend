@@ -4,7 +4,7 @@ import emailValidator from 'email-validator';
 
 // https://dev.to/codebucks/form-validation-in-reactjs-by-building-reusable-custom-hook-1bg7
 
-export function useForm(props) {
+function useForm(props) {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [nameError, setNameError] = useState(false);
@@ -12,6 +12,7 @@ export function useForm(props) {
   const [passwordError, setPasswordError] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const [isLoginValid, setIsLoginValid] = useState(false);
+  const [isEditValid, setIsEditValid] = useState(false);
 
   const validate = (e, name, value) => {
     const passwordRegExp = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}/g;
@@ -19,7 +20,7 @@ export function useForm(props) {
 
     switch (name) {
       case 'userName':
-        if (!new RegExp(nameRegExp).test(value) /* value.length < 2 || value.length > 30 */) {
+        if (!new RegExp(nameRegExp).test(value)) {
           setNameError(false);
           setErrors({
             ...errors,
@@ -48,7 +49,7 @@ export function useForm(props) {
 
       case 'password':
         if (
-          !new RegExp(passwordRegExp).test(value) /* && value.length < 8 */
+          !new RegExp(passwordRegExp).test(value)
         ) {
           setPasswordError(false);
           setErrors({
@@ -80,15 +81,7 @@ export function useForm(props) {
       ...values, [name]: value,
     });
   };
-  /*   const handleSubmit = (e) => {
-      if (e) e.preventDefault();
 
-      if (Object.keys(errors).length === 0 && Object.keys(values).length !== 0) {
-        callback(); // тут переключение на главную?
-      } else {
-        console.log('There is an Error');
-      }
-    }; */
   const handleSubmit = (e) => {
     e.preventDefault();
     props.onRegister({
@@ -97,6 +90,15 @@ export function useForm(props) {
       password: values.password,
     });
   };
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    props.onRegister({
+      email: values.email,
+      password: values.password,
+    });
+  };
+
   useEffect(() => {
     if (nameError && emailError && passwordError) {
       setIsValid(true);
@@ -113,11 +115,21 @@ export function useForm(props) {
     }
   });
 
+  useEffect(() => {
+    if (nameError && emailError) {
+      setIsEditValid(true);
+    } else {
+      setIsEditValid(false);
+    }
+  });
+
   return {
     values,
     errors,
     handleChange,
     handleSubmit,
+    handleLoginSubmit,
+    isEditValid,
     isValid,
     isLoginValid,
   };

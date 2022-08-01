@@ -20,7 +20,7 @@ class Auth {
   getUserInfo() {
     return fetch(`${this.url}/${'users'}/${'me'}`, {
       headers: this._headers,
-      credentials: 'included',
+      credentials: 'include',
     }).then(this._checkResponse);
   }
 

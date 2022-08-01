@@ -1,5 +1,6 @@
 import React from 'react';
-import { useForm } from '../../utils/FormValidation';
+import { Link } from 'react-router-dom';
+import useForm from '../../utils/FormValidation';
 import './Register.css';
 import logo from '../../images/logo.svg';
 
@@ -53,7 +54,8 @@ function Register(props) {
             className='register__submit-button'
             type='submit'
           >Зарегистрироваться</button>
-          <p className='register__secondary-text register__text'>Уже зарегестрированы?<button className='register__enter-button register__text' type='button'>Войти</button></p>
+          <p className='register__secondary-text register__text'>Уже зарегестрированы?<Link
+            to='/signin' className='register__enter-button register__text' >Войти</Link></p>
         </div>
       </form>
 

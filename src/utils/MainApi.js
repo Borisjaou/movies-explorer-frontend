@@ -13,7 +13,6 @@
   - Авторизация пользователя
   - Редакитрование пользователя
 
-
 */
 
 class Api {
@@ -64,40 +63,34 @@ class Api {
     }).then(this._checkResponse);
   }
 
-  /* country, director, duration, year, description, image, trailerLink, thumbail, movieId, nameRU, nameEN */
-
-  createMovie(...) {
+  createMovie(value) {
     return fetch(`${this.url}/${'movies'}`, {
       method: 'POST',
       headers: this._headers,
       credentials: 'include',
       body: JSON.stringify({
-        country,
-        director,
-        duration,
-        year,
-        description,
-        image,
-        trailerLink,
-        thumbail,
-        movieId,
-        nameRU,
-        nameEN,
+        country: value.country,
+        director: value.director,
+        duration: value.duration,
+        year: value.year,
+        description: value.year,
+        image: value.image,
+        trailerLink: value.trailerLink,
+        thumbail: value.thumbail,
+        movieId: value.movieId,
+        nameRU: value.nameRU,
+        nameEN: value.nameEN,
       }),
     }).then(this._checkResponse);
   }
 
   deleteCard(id) {
-    return fetch(`${this.url}/${cards}`, {
+    return fetch(`${this.url}/${id}`, {
       method: 'DELETE',
       headers: this._headers,
       credentials: 'include',
     }).then(this._checkResponse);
   }
-
-
-
-
 } // end of Api
 
 const options = {
