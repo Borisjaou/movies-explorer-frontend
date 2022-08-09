@@ -43,6 +43,41 @@ class Api {
     }).then(this._checkResponse);
   }
 
+  registerUser(name, password, email) {
+    return fetch(`${this.url}/${'signup'}`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify({
+        name,
+        password,
+        email,
+      }),
+    }).then(this._checkResponse);
+  }
+
+  loginUser(email, password) {
+    return fetch(`${this.url}/${'signin'}`, {
+      method: 'POST',
+      headers: this._headers,
+      credentials: 'include',
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    }).then(this._checkResponse);
+  }
+
+  logOut() {
+    return fetch(`${this.url}/${'signout'}`, {
+      headers: this._headers,
+      credentials: 'include',
+    }).then(this._checkResponse);
+  }
+
   /* getInitialsCards */
   getSavedMovies() {
     return fetch(`${this.url}/${'movies'}`, {
@@ -94,7 +129,7 @@ class Api {
 } // end of Api
 
 const options = {
-  baseUrl: 'your-movie-explorer.nomoredomains.work',
+  baseUrl: 'https://your-movie-explorer.nomoredomains.work',
   headers: {
     'Content-Type': 'application/json',
   },

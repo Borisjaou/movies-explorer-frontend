@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import '../../vendor/normalize.css';
 import './App.css'; // глобальные стили страницы
@@ -11,7 +11,7 @@ import About from '../Main/About/About';
 import Portfolio from '../Main/Portfolio/Portfolio';
 import SearchForm from '../Movies/SearchForm/SearchForm';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
-import { auth } from '../../utils/Auth';
+/* import { auth } from '../../utils/Auth'; */
 import { api } from '../../utils/MainApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -25,36 +25,38 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
   const history = useHistory();
-  const [errorMessage, setErrorMessage] = useState('');
-  const [currentUser, setCurrentUser] = useState({});
-  const [loggedIn, setLoggedIn] = useState(true);
-  useEffect(() => {
-    auth
+  const [errorMessage, setErrorMessage] = React.useState('');
+  const [currentUser, setCurrentUser] = React.useState({});
+  const [loggedIn, setLoggedIn] = React.useState(true); /* доделать */
+  React.useEffect(() => {
+    api
       .getUserInfo()
       .then((user) => {
-        console.log(user);
-        setLoggedIn(true);
         setCurrentUser(user);
+        console.log(user);
+        console.log(loggedIn);
       })
       .catch((value) => {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
       });
   }, []);
-  useEffect(() => {
-    auth
-      .getUserInfo()
-      .then(() => {
-        setLoggedIn(true);
-        /* history.push('/'); */
-      })
-      .catch((value) => {
-        setLoggedIn(false);
-        console.log(`Ошибка. Запрос не выполнен ${value}`);
-      });
-  }, [history]);
+  /*   React.useEffect(() => {
+      api
+        .getUserInfo()
+        .then(() => {
+          console.log('Исторический эффект');
+          setLoggedIn(true);
+          console.log(loggedIn);
+          history.push('/');
+        })
+        .catch((value) => {
+          setLoggedIn(false);
+          console.log(`Ошибка. Запрос не выполнен ${value}`);
+        });
+    }, [history]); */
 
   function handleRegister({ name, email, password }) {
-    auth
+    api
       .registerUser(name, password, email)
       .then(() => {
         history.push('/signin');
@@ -65,14 +67,16 @@ function App() {
       });
   }
   function handleLoginUser({ email, password }) {
-    auth
+    api
       .loginUser(email, password)
       .then(() => {
         setLoggedIn(true);
-        auth.getUserInfo()
+        console.log(loggedIn);
+        api.getUserInfo()
           .then((user) => {
             setCurrentUser(user);
           });
+        console.log(loggedIn);
         history.push('/movies');
       })
       .catch((value) => {
@@ -81,9 +85,10 @@ function App() {
       });
   }
   function handleSignOut() {
-    auth
+    api
       .logOut()
       .then(() => {
+        console.log('srabotka');
         setLoggedIn(false);
         history.push('/signin');
       })
@@ -105,9 +110,8 @@ function App() {
   }
 
   return (
-    <main className='page'>
-      <CurrentUserContext.Provider value={currentUser}>
-
+    <CurrentUserContext.Provider value={currentUser}>
+      <main className='page'>
         <Switch>
           <Route exact path='/'>
             <Header loggedIn={loggedIn} />
@@ -118,22 +122,24 @@ function App() {
             <Portfolio />
             <Footer />
           </Route>
-          <ProtectedRoute
-            path='/movies'
-            loggedIn={loggedIn}
-          >
+          <Route path='/movies'>
             <Header />
             <SearchForm />
-            <MoviesCardList />
+            <ProtectedRoute
+              loggedIn={loggedIn}
+              component={MoviesCardList}
+            />
             <Footer />
-          </ProtectedRoute>
-          <ProtectedRoute path='/saved-movies' loggedIn={loggedIn}>
+          </Route>
+          <Route path='/saved-movies'>
             <Header />
             <SearchForm />
-            <MoviesCardList />
+            <ProtectedRoute
+              loggedIn={loggedIn}
+              component={MoviesCardList}
+            />
             <Footer />
-          </ProtectedRoute>
-
+          </Route>
           <Route path='/profile'>
             <Header />
             <ProtectedRoute
@@ -144,15 +150,6 @@ function App() {
               errorMessage={errorMessage}
             />
           </Route>
-          {/*           <ProtectedRoute
-            path='/profile'
-            loggedIn={loggedIn}
-            component={Profile}
-            signOut={handleSignOut}
-            onRegister={handleUpdateUser}
-            errorMessage={errorMessage}
-          />
- */}
           <Route path='/signin'>
             <Login onRegister={handleLoginUser} errorMessage={errorMessage} />
           </Route>
@@ -164,9 +161,8 @@ function App() {
             <PageNotFound />
           </Route>
         </Switch>
-      </CurrentUserContext.Provider>
-    </main >
-
+      </main >
+    </CurrentUserContext.Provider>
   );
 }
 

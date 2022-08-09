@@ -3,6 +3,8 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 function ProtectedRoute({ component: Component, ...props }) {
+  console.log(props);
+  console.log(props.loggedIn);
   return (
     <Route>
       {() => props.loggedIn ? <Component {...props} /> : <Redirect to='/signin' />
@@ -12,16 +14,3 @@ function ProtectedRoute({ component: Component, ...props }) {
 }
 
 export default ProtectedRoute;
-/* const PrivateRoute = ({ component: Component, ...props }) => (
-
-  <Route
-    render={() => props.loggedIn ? (
-      <Component {...props} />
-    ) : (
-      <Redirect to='/signin' />
-    )
-    }
-  />
-);
-
-export de1ault PrivateRoute; */
