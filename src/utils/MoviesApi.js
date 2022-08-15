@@ -17,7 +17,7 @@ class Search {
     return Promise.reject(res.status);
   }
 
-  searcMovie() {
+  searchMovie() {
     return fetch(this.url, {
       method: 'GET',
       headers: this._headers,

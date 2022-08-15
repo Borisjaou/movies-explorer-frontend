@@ -14,6 +14,7 @@ import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 /* import { auth } from '../../utils/Auth'; */
 import { api } from '../../utils/MainApi';
 import { search } from '../../utils/MoviesApi';
+import MovieSearch from '../../utils/MovieSearch';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Preloader from '../Movies/Preloader/Preloader';
@@ -105,9 +106,9 @@ function App() {
 
   function handleSearch({ searchRequest }) {
     search
-      .searchMovies(searchRequest)
-      .then(() => {
-        /* Перебрать методом MAP */
+      .searchMovie()
+      .then((items) => {
+        <MovieSearch items={items} request={searchRequest} />;
       })
       .catch((value) => {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
