@@ -30,6 +30,7 @@ const options = {
   baseUrl: 'https://api.nomoreparties.co/beatfilm-movies',
   headers: {
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': origin,
   },
 };
 
