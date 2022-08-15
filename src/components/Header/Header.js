@@ -19,8 +19,8 @@ function Header(props) {
                   <Link className='header__reg-button' to='/signup'>Регистрация</Link>
                   <Link className='header__login-button' to='/signin'>
                     <div className='header__button_container'>Войти</div>
-                  </Link> </> : <div className='header__loggedIn-buttons'><Link className='header__reg-button' to='/signup'>Фильмы</Link>
-                  <Link className='header__reg-button' to='/signin'>Сохранённые фильмы</Link>
+                  </Link> </> : <div className='header__loggedIn-buttons'><Link className='header__reg-button' to='/movies'>Фильмы</Link>
+                  <Link className='header__reg-button' to='/saved-movies'>Сохранённые фильмы</Link>
                   <Link className='header__reg-button' to='/profile'>Аккаунт</Link></div>
               }
             </div>

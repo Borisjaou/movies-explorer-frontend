@@ -13,11 +13,11 @@ import SearchForm from '../Movies/SearchForm/SearchForm';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 /* import { auth } from '../../utils/Auth'; */
 import { api } from '../../utils/MainApi';
+import { search } from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-/* import Preloader from '../Movies/Preloader/Preloader' */
+import Preloader from '../Movies/Preloader/Preloader';
 
-import Navigation from '../Navigation/Navigation';
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
@@ -33,8 +33,6 @@ function App() {
       .getUserInfo()
       .then((user) => {
         setCurrentUser(user);
-        console.log(user);
-        console.log(loggedIn);
       })
       .catch((value) => {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
@@ -71,12 +69,10 @@ function App() {
       .loginUser(email, password)
       .then(() => {
         setLoggedIn(true);
-        console.log(loggedIn);
         api.getUserInfo()
           .then((user) => {
             setCurrentUser(user);
           });
-        console.log(loggedIn);
         history.push('/movies');
       })
       .catch((value) => {
@@ -88,7 +84,6 @@ function App() {
     api
       .logOut()
       .then(() => {
-        console.log('srabotka');
         setLoggedIn(false);
         history.push('/signin');
       })
@@ -98,11 +93,21 @@ function App() {
   }
 
   function handleUpdateUser({ name, email }) {
-    console.log(name, email);
     api
       .editProfile(name, email)
       .then((user) => {
         setCurrentUser(user);
+      })
+      .catch((value) => {
+        console.log(`Ошибка. Запрос не выполнен ${value}`);
+      });
+  }
+
+  function handleSearch({ searchRequest }) {
+    search
+      .searchMovies(searchRequest)
+      .then(() => {
+        /* Перебрать методом MAP */
       })
       .catch((value) => {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
@@ -124,7 +129,7 @@ function App() {
           </Route>
           <Route path='/movies'>
             <Header />
-            <SearchForm />
+            <SearchForm onSearch={handleSearch} />
             <ProtectedRoute
               loggedIn={loggedIn}
               component={MoviesCardList}
@@ -156,7 +161,7 @@ function App() {
           <Route path='/signup'>
             <Register onRegister={handleRegister} errorMessage={errorMessage} />
           </Route>
-          <Route path='/check'><Navigation /></Route>
+          <Route path='/check'><Preloader /></Route>
           <Route path='*'>
             <PageNotFound />
           </Route>
