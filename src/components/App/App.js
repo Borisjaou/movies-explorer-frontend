@@ -14,7 +14,6 @@ import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 /* import { auth } from '../../utils/Auth'; */
 import { api } from '../../utils/MainApi';
 import { search } from '../../utils/MoviesApi';
-import MovieSearch from '../../utils/MovieSearch';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Preloader from '../Movies/Preloader/Preloader';
@@ -28,43 +27,39 @@ function App() {
   const history = useHistory();
   const [errorMessage, setErrorMessage] = React.useState('');
   const [currentUser, setCurrentUser] = React.useState({});
-  const [loggedIn, setLoggedIn] = React.useState(true); /* доделать */
+  const [loggedIn, setLoggedIn] = React.useState(null);
+  console.log(loggedIn);
+
+  /*   const [movieItem, setMovieItem] = React.useState([]);
+    const [searchItem, setSearchItem] = React.useState('');
+   */
+
   React.useEffect(() => {
     api
       .getUserInfo()
       .then((user) => {
         setCurrentUser(user);
+        setLoggedIn(true);
+        console.log(user);
       })
       .catch((value) => {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
       });
   }, []);
-  /*   React.useEffect(() => {
-      api
-        .getUserInfo()
-        .then(() => {
-          console.log('Исторический эффект');
-          setLoggedIn(true);
-          console.log(loggedIn);
-          history.push('/');
-        })
-        .catch((value) => {
-          setLoggedIn(false);
-          console.log(`Ошибка. Запрос не выполнен ${value}`);
-        });
-    }, [history]); */
 
-  function handleRegister({ name, email, password }) {
+  React.useEffect(() => {
     api
-      .registerUser(name, password, email)
-      .then(() => {
-        history.push('/signin');
+      .getUserInfo()
+      .then((user) => {
+        console.log(user);
+        setLoggedIn(true);
       })
       .catch((value) => {
+        setLoggedIn(false);
         console.log(`Ошибка. Запрос не выполнен ${value}`);
-        setErrorMessage('Что-то пошло не так');
       });
-  }
+  }, [history]);
+
   function handleLoginUser({ email, password }) {
     api
       .loginUser(email, password)
@@ -81,6 +76,19 @@ function App() {
         setErrorMessage('Что-то пошло не так');
       });
   }
+
+  function handleRegister({ name, email, password }) {
+    api
+      .registerUser(name, password, email)
+      .then(() => {
+        handleLoginUser({ email, password });
+      })
+      .catch((value) => {
+        console.log(`Ошибка. Запрос не выполнен ${value}`);
+        setErrorMessage('Что-то пошло не так');
+      });
+  }
+
   function handleSignOut() {
     api
       .logOut()
@@ -104,12 +112,13 @@ function App() {
       });
   }
 
-  function handleSearch({ searchRequest }) {
+  function handleSearch() {
     search
       .searchMovie()
-      .then((items) => {
-        <MovieSearch items={items} request={searchRequest} />;
-      })
+      .then(() => {
+        /*         setMovieItem(items);
+        setSearchItem(searchRequest);
+ */ })
       .catch((value) => {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
       });

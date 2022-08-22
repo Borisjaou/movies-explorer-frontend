@@ -7,7 +7,6 @@
 class Search {
   constructor(config) {
     this.url = config.baseUrl;
-    this._headers = config.headers;
   }
 
   _checkResponse(res) {
@@ -20,18 +19,12 @@ class Search {
   searchMovie() {
     return fetch(this.url, {
       method: 'GET',
-      headers: this._headers,
-      credentials: 'include',
     }).then(this._checkResponse);
   }
 }
 
 const options = {
   baseUrl: 'https://api.nomoreparties.co/beatfilm-movies',
-  headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': origin,
-  },
 };
 
 export const search = new Search(options);

@@ -44,7 +44,9 @@ function SearchForm(props) {
         </button>
       </form>
       <label className='checkbox checkbox__option'>
-        <input type='checkbox' className='checkbox__input' />
+        <input
+          /* onChange={} */
+          type='checkbox' className='checkbox__input' />
         Короткометражки
         <span className='checkbox__slider' />
       </label>
