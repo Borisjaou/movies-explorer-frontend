@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SearchForm.css';
 import searchButton from '../../../images/searchButton.svg';
 import searchIcon from '../../../images/searchIcon.svg';
@@ -7,7 +7,7 @@ function SearchForm(props) {
   const [searchError, setSearchError] = useState('');
   const [searchRequest, setSearchRequest] = useState('');
   const [isValid, setIsValid] = useState(false);
-
+  const [checked, setChecked] = useState(false);
   const searchRegExp = /^[а-яА-ЯёЁa-zA-Z0-9]+$/;
   function handleInputSearch(e) {
     setSearchRequest(e.target.value);
@@ -27,6 +27,15 @@ function SearchForm(props) {
     });
   }
 
+  function handleSearchShort(e) {
+    setChecked(e.target.checked);
+  }
+  useEffect(() => {
+    props.onChecked({
+      checked,
+    });
+  }, [checked]);
+
   return (
     <section className='search'>
       <form onSubmit={handleSearchSubmit} className='search__container'>
@@ -45,7 +54,7 @@ function SearchForm(props) {
       </form>
       <label className='checkbox checkbox__option'>
         <input
-          /* onChange={} */
+          onChange={handleSearchShort}
           type='checkbox' className='checkbox__input' />
         Короткометражки
         <span className='checkbox__slider' />

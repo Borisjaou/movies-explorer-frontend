@@ -17,6 +17,7 @@ import { search } from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Preloader from '../Movies/Preloader/Preloader';
+import Movies from '../Movies/Movies/Movies';
 
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
@@ -28,11 +29,21 @@ function App() {
   const [errorMessage, setErrorMessage] = React.useState('');
   const [currentUser, setCurrentUser] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(null);
-  console.log(loggedIn);
 
-  /*   const [movieItem, setMovieItem] = React.useState([]);
-    const [searchItem, setSearchItem] = React.useState('');
-   */
+  const [movieItem, setMovieItem] = React.useState([]);
+  const [searchItem, setSearchItem] = React.useState('');
+  const [short, setShort] = React.useState(false);
+  React.useEffect(() => {
+    search
+      .searchMovie()
+      .then((items) => {
+        localStorage.setItem('movies', JSON.stringify(items));
+        setMovieItem(items);
+      })
+      .catch((value) => {
+        console.log(`Ошибка. Запрос не выполнен ${value}`);
+      });
+  }, []);
 
   React.useEffect(() => {
     api
@@ -94,6 +105,7 @@ function App() {
       .logOut()
       .then(() => {
         setLoggedIn(false);
+        localStorage.clear();
         history.push('/signin');
       })
       .catch((value) => {
@@ -112,16 +124,13 @@ function App() {
       });
   }
 
-  function handleSearch() {
-    search
-      .searchMovie()
-      .then(() => {
-        /*         setMovieItem(items);
-        setSearchItem(searchRequest);
- */ })
-      .catch((value) => {
-        console.log(`Ошибка. Запрос не выполнен ${value}`);
-      });
+  function handleSearch({ searchRequest }) {
+    setSearchItem(searchRequest);
+  }
+
+  function handelShort({ checked }) {
+    console.log(checked);
+    setShort(checked);
   }
 
   return (
@@ -139,10 +148,14 @@ function App() {
           </Route>
           <Route path='/movies'>
             <Header />
-            <SearchForm onSearch={handleSearch} />
+            {/* <Movies movies={movieItem} search={searchItem} short={short} /> */}
+            <SearchForm onSearch={handleSearch} onChecked={handelShort} />
             <ProtectedRoute
               loggedIn={loggedIn}
               component={MoviesCardList}
+              short={short}
+              search={searchItem}
+              movies={movieItem}
             />
             <Footer />
           </Route>

@@ -6,7 +6,6 @@ import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 
 function Header(props) {
-  console.log(props);
   return (
     <header>
       <Switch>

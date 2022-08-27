@@ -10,7 +10,7 @@
 .movies-card__image {
   object-fit: contain;
   align-self: center;
-  width: 100%;
+  max-width: 300px;
   max-height: 168px;
 }
 

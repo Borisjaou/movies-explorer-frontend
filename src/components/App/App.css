@@ -5,7 +5,7 @@
   src: url('../../vendor/fonts/Inter-Regular.woff');
 }
 .page {
-  background-color:rgb(77, 75, 74);
+  /* background-color:rgb(77, 75, 74); */
   font-family: Inter, Arial, Helvetica, sans-serif;
   max-width: 1280px;
   min-width: 320px;
