@@ -17,7 +17,6 @@ import { search } from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Preloader from '../Movies/Preloader/Preloader';
-import Movies from '../Movies/Movies/Movies';
 
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
@@ -29,11 +28,13 @@ function App() {
   const [errorMessage, setErrorMessage] = React.useState('');
   const [currentUser, setCurrentUser] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(null);
+  /* const [isLoading, setIsLoading] = React.useState(false); */
 
   const [movieItem, setMovieItem] = React.useState([]);
   const [searchItem, setSearchItem] = React.useState('');
   const [short, setShort] = React.useState(false);
   React.useEffect(() => {
+    /* setIsLoading(false); */
     search
       .searchMovie()
       .then((items) => {
@@ -43,6 +44,7 @@ function App() {
       .catch((value) => {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
       });
+    /* .finally(() => setIsLoading(false)); */
   }, []);
 
   React.useEffect(() => {

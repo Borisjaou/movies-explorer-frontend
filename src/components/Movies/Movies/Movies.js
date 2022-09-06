@@ -1,20 +1,19 @@
 import React from 'react';
 
 function Movies(props) {
-  console.log(props);
   const [shortMovie, setShortMovie] = React.useState(false);
-  const [query, setQuery] = React.useState('');
+  /* const [query, setQuery] = React.useState(''); */
   const [movies, setMovies] = React.useState([]);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
 
-  function updateFilteredMovies() {
-    setFilteredMovies();
-    localStorage.setItem('filteredMovies', JSON.stringify());
-  }
-
   function updateQuery() {
-    setQuery(props.search);
+    /* setQuery(props.search); */
     localStorage.setItem('search', JSON.stringify(props.search));
+    if (props.search.length) {
+      const data = movies.filter((item) => item.nameRU.toLowerCase()
+        .indexOf(props.search.toLowerCase()) >= 0);
+      setFilteredMovies(data);
+    }
   }
 
   function updateShort() {
@@ -27,36 +26,14 @@ function Movies(props) {
     localStorage.setItem('movies', JSON.stringify(props.movies));
   }
 
-  /* этот эффект чтобы обновить локальное хранилище */
   React.useEffect(() => {
-    updateFilteredMovies();
-    updateQuery();
     updateShort();
+    updateQuery();
     allMovies();
   }, [props]);
-  console.log(localStorage);
-
-  /*   React.useEffect(() => {
-      const myMovies = JSON.parse(localStorage.getItem('movies') || '[]');
-      updateMovies(myMovies);
-      updateFilteredMovies(JSON.parse(localStorage.getItem('filteredMovies') || '[]'));
-      updateQuery(localStorage.getItem('query') || '');
-      updateShort(JSON.parse(localStorage.getItem('short') || 'false'));
-
-      if (!movies.length) {
-        search
-          .getMovies()
-          .then((movies) => {
-            updateMovies(movies);
-            updateFilteredMovies(movies);
-          }, []);
-      }
-    }); */
 
   return [
-    movies,
     filteredMovies,
-    query,
     shortMovie,
   ];
 }
