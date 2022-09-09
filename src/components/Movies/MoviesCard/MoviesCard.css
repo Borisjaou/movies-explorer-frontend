@@ -12,6 +12,7 @@
   align-self: center;
   max-width: 300px;
   max-height: 168px;
+  cursor: pointer;
 }
 
 .movies-card__inscription {
@@ -24,6 +25,7 @@
   color: #FFFFFF;
   font-size: 12px;
   line-height: 15px;
+  cursor: pointer;
 }
 
 .movies-card__like {
@@ -36,7 +38,28 @@
   cursor: pointer;
   border: none;
   background-color: #313131;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-image: url(../../../images/smallUnlikedButton.svg);
 }
+
+.movies-card__like_active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: none;
+  background-color: #313131;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-image: url(../../../images/smallLikedButton.svg);
+}
+
 .movies-card__delete {
   display: flex;
   justify-content: center;

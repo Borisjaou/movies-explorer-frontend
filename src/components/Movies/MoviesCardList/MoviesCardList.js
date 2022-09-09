@@ -5,26 +5,40 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 
 function MoviesCardList(props) {
   console.log(props);
+  console.log(localStorage);
 
-  const [showMore, setShowMore] = React.useState(0);
   const [
     filteredMovies,
     shortMovie,
+    query,
   ] = Movies(props);
 
+  const [showMore, setShowMore] = React.useState(0);
+  const [showMoreButton, setShowMoreButton] = React.useState('movies-card__more_hidden');
+  const [showMessage, setShowMessage] = React.useState('card-list__message_hidden');
+  /* const [savedMovies, setSavedMovies] = React.useState([]); */
+
   React.useEffect(() => {
+    if (filteredMovies.length === 0 && query.length !== 0) {
+      setShowMessage('card-list__message');
+    } else {
+      setShowMessage('card-list__message_hidden');
+    }
     setShowMore(0);
   }, [filteredMovies]);
 
   function getMovies() {
     if (window.innerWidth >= 1280) {
-      return filteredMovies.slice(0, 12 + showMore);
+      return filteredMovies
+        .slice(0, 12 + showMore);
     }
     if (window.innerWidth > 480 && window.innerWidth < 1280) {
-      return filteredMovies.slice(0, 8 + showMore);
+      return filteredMovies
+        .slice(0, 8 + showMore);
     }
     if (window.innerWidth >= 320 && window.innerWidth <= 480) {
-      return filteredMovies.slice(0, 5 + showMore);
+      return filteredMovies
+        .slice(0, 5 + showMore);
     }
     return console.log('Что-то пошло не так');
   }
@@ -42,14 +56,23 @@ function MoviesCardList(props) {
     return console.log('Что-то пошло не так');
   }
 
+  React.useEffect(() => {
+    if (getMovies().length < filteredMovies.length && getMovies().length !== 0) {
+      setShowMoreButton('movies-card__more');
+    } else {
+      setShowMoreButton('movies-card__more_hidden');
+    }
+  }, [handleClickShowMore]);
+
   console.log(filteredMovies);
   console.log(getMovies());
 
   return (
     <section className='card-list'>
+      <p className={showMessage}>Ничего не найдено</p>
       <div className='card-list__container'>
         {getMovies()
-          .filter((item) => (!shortMovie || item.duration <= 40))
+          /* .filter((item) => (!shortMovie || item.duration <= 40)) */
           .map((item) => (
             <MoviesCard
               movieInfo={item}
@@ -57,7 +80,7 @@ function MoviesCardList(props) {
             />
           ))}
       </div>
-      <div className='movies-card__more'>
+      <div className={showMoreButton}>
         <button
           className='movies-card__more-button'
           onClick={handleClickShowMore}
@@ -88,4 +111,6 @@ const showMovie = new Promise((resolve, reject) => {
     return (<Preloader />)
   })
 });
-showMovie */
+showMovie
+
+*/

@@ -79,12 +79,12 @@ class Api {
   }
 
   /* getInitialsCards */
-  getSavedMovies() {
-    return fetch(`${this.url}/${'movies'}`, {
-      headers: this._headers,
-      credentials: 'include',
-    }).then(this._checkResponse);
-  }
+  /*   getSavedMovies() {
+      return fetch(`${this.url}/${'movies'}`, {
+        headers: this._headers,
+        credentials: 'include',
+      }).then(this._checkResponse);
+    } */
 
   editProfile(name, email) {
     return fetch(`${this.url}/${'users'}/${'me'}`, {

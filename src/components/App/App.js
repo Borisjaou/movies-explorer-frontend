@@ -30,9 +30,23 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(null);
   /* const [isLoading, setIsLoading] = React.useState(false); */
 
+  const [savedMovies, setSavedMovies] = React.useState([]);
+
   const [movieItem, setMovieItem] = React.useState([]);
   const [searchItem, setSearchItem] = React.useState('');
   const [short, setShort] = React.useState(false);
+
+  React.useEffect(() => {
+    api
+      .listItem()
+      .then((items) => {
+        setSavedMovies(items);
+      })
+      .catch((value) => {
+        console.log(`Ошибка. Запрос не выполнен ${value}`);
+      });
+  }, []);
+
   React.useEffect(() => {
     /* setIsLoading(false); */
     search
@@ -131,7 +145,6 @@ function App() {
   }
 
   function handelShort({ checked }) {
-    console.log(checked);
     setShort(checked);
   }
 
@@ -166,6 +179,7 @@ function App() {
             <SearchForm />
             <ProtectedRoute
               loggedIn={loggedIn}
+              savedMovies={savedMovies}
               component={MoviesCardList}
             />
             <Footer />
