@@ -29,12 +29,12 @@ class Api {
   }
 
   /* список сохраненных фильмов */
-  listItem() {
-    return fetch(`${this._url}/${'movies'}`, {
-      headers: this._headers,
-      credentials: 'include',
-    }).then(this._checkResponse);
-  }
+  /*  listItem() {
+     return fetch(`${this._url}/${'movies'}`, {
+       headers: this._headers,
+       credentials: 'include',
+     }).then(this._checkResponse);
+   } */
 
   getUserInfo() {
     return fetch(`${this.url}/${'users'}/${'me'}`, {
@@ -79,12 +79,12 @@ class Api {
   }
 
   /* getInitialsCards */
-  /*   getSavedMovies() {
-      return fetch(`${this.url}/${'movies'}`, {
-        headers: this._headers,
-        credentials: 'include',
-      }).then(this._checkResponse);
-    } */
+  getMovies() {
+    return fetch(`${this.url}/${'movies'}`, {
+      headers: this._headers,
+      credentials: 'include',
+    }).then(this._checkResponse);
+  }
 
   editProfile(name, email) {
     return fetch(`${this.url}/${'users'}/${'me'}`, {
@@ -109,10 +109,10 @@ class Api {
         duration: value.duration,
         year: value.year,
         description: value.year,
-        image: value.image,
+        image: `${'https://api.nomoreparties.co'}${value.image.url}`,
         trailerLink: value.trailerLink,
-        thumbail: value.thumbail,
-        movieId: value.movieId,
+        thumbnail: `${'https://api.nomoreparties.co'}${value.image.formats.thumbnail.url}`,
+        movieId: value.id,
         nameRU: value.nameRU,
         nameEN: value.nameEN,
       }),

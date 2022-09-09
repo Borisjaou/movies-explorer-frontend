@@ -5,7 +5,7 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 
 function MoviesCardList(props) {
   console.log(props);
-  console.log(localStorage);
+  /*  console.log(localStorage); */
 
   const [
     filteredMovies,
@@ -75,6 +75,7 @@ function MoviesCardList(props) {
           /* .filter((item) => (!shortMovie || item.duration <= 40)) */
           .map((item) => (
             <MoviesCard
+              onLike={props.onLike}
               movieInfo={item}
               key={item.id}
             />

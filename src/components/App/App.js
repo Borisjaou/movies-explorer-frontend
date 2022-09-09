@@ -38,8 +38,9 @@ function App() {
 
   React.useEffect(() => {
     api
-      .listItem()
+      .getMovies()
       .then((items) => {
+        console.log(items);
         setSavedMovies(items);
       })
       .catch((value) => {
@@ -148,6 +149,11 @@ function App() {
     setShort(checked);
   }
 
+  function handleLike(card) {
+    api
+      .createMovie(card);
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <main className='page'>
@@ -168,6 +174,7 @@ function App() {
             <ProtectedRoute
               loggedIn={loggedIn}
               component={MoviesCardList}
+              onLike={handleLike}
               short={short}
               search={searchItem}
               movies={movieItem}

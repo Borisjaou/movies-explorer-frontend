@@ -4,15 +4,15 @@ import './MoviesCard.css';
 import cross from '../../../images/icon-delete.svg';
 import { CurrentUserContext } from '../../../contexts/CurrentUserContext';
 import { functions } from 'lodash';
+import { api } from '../../../utils/MainApi';
 
 function MoviesCard(props) {
   console.log(props);
   const isSaved = props.savedMovies;
   const currentUser = React.useContext(CurrentUserContext);
-/*   const isOwn = props.cardInfo.owner === currentUser._id;
- */  const movieLikeButtonClassName = `movies-card__like ${isSaved ? 'movies-card__like_active' : 'movies-card__like'}`;
-
-  const currentPath = location.pathname;
+  /*   const isOwn = props.cardInfo.owner === currentUser._id;
+   */
+  const movieLikeButtonClassName = `movies-card__like ${isSaved ? 'movies-card__like_active' : 'movies-card__like'}`;
 
   function convertTime() {
     const minutes = props.movieInfo.duration;
@@ -27,7 +27,7 @@ function MoviesCard(props) {
   }
 
   function handleLike() {
-    console.log('kek')
+    props.onLike(props.movieInfo);
   }
   const showIcon = (window.location.pathname === '/saved-movies') ? (<button
     onClick={handleLike}
