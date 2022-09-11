@@ -2,20 +2,33 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './MoviesCard.css';
 import cross from '../../../images/icon-delete.svg';
-import { CurrentUserContext } from '../../../contexts/CurrentUserContext';
-import { functions } from 'lodash';
-import { api } from '../../../utils/MainApi';
 
 function MoviesCard(props) {
-  console.log(props);
-  const isSaved = props.savedMovies;
-  const currentUser = React.useContext(CurrentUserContext);
-  /*   const isOwn = props.cardInfo.owner === currentUser._id;
-   */
-  const movieLikeButtonClassName = `movies-card__like ${isSaved ? 'movies-card__like_active' : 'movies-card__like'}`;
+  const [addClass, setAddClass] = React.useState('');
+  const serverMovieCard = props.savedMovies.find((e) => e._id === props.movieInfo._id);
+  const apiMovieCard = props.savedMovies.find((e) => e.movieId === props.movieInfo.id);
 
-  function convertTime() {
-    const minutes = props.movieInfo.duration;
+  function compareId() {
+    if (props.movieInfo.id === apiMovieCard.movieId) {
+      return apiMovieCard;
+    }
+    return console.log('Произошла ошибка');
+  }
+
+  const isOwnCard = props.savedMovies.some(
+    (i) => i.movieId === props.movieInfo.id || props.movieInfo.movieId,
+  );
+
+  function movieLikeButtonClassName() {
+    if (isOwnCard) {
+      setAddClass('movies-card__like_active');
+    } else {
+      setAddClass('movies-card__like');
+    }
+  }
+
+  function convertTime(duration) {
+    const minutes = duration;
     const hours = minutes / 60;
     const hourTime = Math.floor(hours);
     const minuteTime = Math.round((hours - hourTime) * 60);
@@ -29,20 +42,25 @@ function MoviesCard(props) {
   function handleLike() {
     props.onLike(props.movieInfo);
   }
-  const showIcon = (window.location.pathname === '/saved-movies') ? (<button
-    onClick={handleLike}
-    className='movies-card__delete'>
-    <img
-      /* className='movies-card__cross' */
-      src={cross}
-      alt='кнопка лайк'
-      type='button'>
-    </img>
-  </button>) : <button
-    onClick={handleLike}
-    className={movieLikeButtonClassName}
-    /* className='movies-card__like' */
-    type='button' />;
+
+  function handleDeleteMovie() {
+    props.onDelete(serverMovieCard || compareId());
+  }
+
+  function handleMovieCard() {
+    if (isOwnCard) {
+      console.log('Delte Card');
+      handleDeleteMovie();
+      setAddClass('movies-card__like');
+    } else {
+      handleLike();
+      setAddClass('movies-card__like_active');
+    }
+  }
+
+  React.useEffect(() => {
+    movieLikeButtonClassName();
+  }, []);
 
   return (
     <section>
@@ -58,32 +76,43 @@ function MoviesCard(props) {
               <p className='movies-card__title'
                 onClick={handleOpenTrailer}
               >{props.movieInfo.nameRU}</p>
-              {showIcon}
-              {/* <button className='movies-card__like' type='button' /> */}
+
+              <button
+                className={addClass}
+                type='button'
+                onClick={handleMovieCard}
+              />
             </div>
-            <div className='movies-card__duration'>{convertTime()}</div>
+            <div className='movies-card__duration'>{convertTime(props.movieInfo.duration)}</div>
           </figure>
         </Route>
-        {/*         <Route path='/saved-movies'>
+        <Route path='/saved-movies'>
           <figure className='movies-card'>
             <img className='movies-card__image'
               alt={props.movieInfo.nameRU}
-              src={`${'https://api.nomoreparties.co'}${props.movieInfo.image.url}`}
+              src={props.movieInfo.image}
               onClick={handleOpenTrailer}
             />
             <div className='movies-card__inscription'>
               <p className='movies-card__title'
                 onClick={handleOpenTrailer}
               >{props.movieInfo.nameRU}</p>
-              <button className='movies-card__delete'><img className='movies-card__cross' src={cross} alt='кнопка лайк' type='button'></img></button>
+              <button className='movies-card__delete'>
+                <img
+                  className='movies-card__cross'
+                  src={cross}
+                  alt='кнопка лайк'
+                  type='button'
+                  onClick={handleMovieCard}
+                />
+              </button>
             </div>
-            <div className='movies-card__duration'>{convertTime()}</div>
+            <div className='movies-card__duration'>{convertTime(props.movieInfo.duration)}</div>
           </figure>
         </Route>
- */}      </Switch>
+      </Switch>
     </section>
 
   );
 }
 export default MoviesCard;
-

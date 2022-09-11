@@ -4,12 +4,8 @@ import Movies from '../Movies/Movies';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
 function MoviesCardList(props) {
-  console.log(props);
-  /*  console.log(localStorage); */
-
   const [
     filteredMovies,
-    shortMovie,
     query,
   ] = Movies(props);
 
@@ -64,20 +60,21 @@ function MoviesCardList(props) {
     }
   }, [handleClickShowMore]);
 
-  console.log(filteredMovies);
-  console.log(getMovies());
+  /* console.log(filteredMovies);
+  console.log(getMovies()); */
 
   return (
     <section className='card-list'>
       <p className={showMessage}>Ничего не найдено</p>
       <div className='card-list__container'>
         {getMovies()
-          /* .filter((item) => (!shortMovie || item.duration <= 40)) */
           .map((item) => (
-            <MoviesCard
+            < MoviesCard
               onLike={props.onLike}
+              onDelete={props.onDelete}
               movieInfo={item}
-              key={item.id}
+              savedMovies={props.savedMovies}
+              key={item.movieId || item.id}
             />
           ))}
       </div>
@@ -104,7 +101,8 @@ export default MoviesCardList;
 /*
 'Ничего не найдено';
 
-'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте еще раз'
+'Во время запроса произошла ошибка. Возможно, проблема с
+соединением или сервер недоступен. Подождите немного и попробуйте еще раз'
 const showCard = тут условия если есть фильтрованные карты то карты, если нет ничего не найдено
 
 const showMovie = new Promise((resolve, reject) => {

@@ -29,9 +29,6 @@
 }
 
 .movies-card__like {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 24px;
   height: 24px;
   border-radius: 50px;
@@ -45,9 +42,6 @@
 }
 
 .movies-card__like_active {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 24px;
   height: 24px;
   border-radius: 50px;

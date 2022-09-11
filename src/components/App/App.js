@@ -40,7 +40,6 @@ function App() {
     api
       .getMovies()
       .then((items) => {
-        console.log(items);
         setSavedMovies(items);
       })
       .catch((value) => {
@@ -53,7 +52,7 @@ function App() {
     search
       .searchMovie()
       .then((items) => {
-        localStorage.setItem('movies', JSON.stringify(items));
+        localStorage.setItem('allMovies', JSON.stringify(items));
         setMovieItem(items);
       })
       .catch((value) => {
@@ -78,8 +77,7 @@ function App() {
   React.useEffect(() => {
     api
       .getUserInfo()
-      .then((user) => {
-        console.log(user);
+      .then(() => {
         setLoggedIn(true);
       })
       .catch((value) => {
@@ -149,10 +147,44 @@ function App() {
     setShort(checked);
   }
 
-  function handleLike(card) {
+  function getInitialsMovies() {
     api
-      .createMovie(card);
+      .getMovies()
+      .then((items) => {
+        setSavedMovies(items);
+      })
+      .catch((value) => {
+        console.log(`Ошибка. Запрос не выполнен ${value}`);
+      });
   }
+  function handleLike(movie) {
+    console.log(movie);
+    api
+      .createMovie(movie)
+      .then((item) => {
+        setSavedMovies((state) => state.map((c) => (c.movieId === movie.movieId ? item : c)));
+        getInitialsMovies();
+      })
+      .catch((value) => {
+        console.log(`Ошибка. Запрос не выполнен ${value}`);
+      });
+    console.log(savedMovies);
+  }
+
+  function handleMovieDelete(card) {
+    console.log(card);
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        setSavedMovies((state) => state.filter((item) => item._id !== card._id));
+        getInitialsMovies();
+      })
+      .catch((value) => {
+        console.log(`Ошибка. Запрос не выполнен ${value}`);
+      });
+  }
+
+  console.log(savedMovies);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -173,21 +205,28 @@ function App() {
             <SearchForm onSearch={handleSearch} onChecked={handelShort} />
             <ProtectedRoute
               loggedIn={loggedIn}
+              savedMovies={savedMovies}
               component={MoviesCardList}
               onLike={handleLike}
               short={short}
               search={searchItem}
               movies={movieItem}
+              onDelete={handleMovieDelete}
             />
             <Footer />
           </Route>
           <Route path='/saved-movies'>
             <Header />
-            <SearchForm />
+            <SearchForm onSearch={handleSearch} onChecked={handelShort} />
             <ProtectedRoute
               loggedIn={loggedIn}
               savedMovies={savedMovies}
               component={MoviesCardList}
+              onLike={handleLike}
+              short={short}
+              search={searchItem}
+              movies={movieItem}
+              onDelete={handleMovieDelete}
             />
             <Footer />
           </Route>

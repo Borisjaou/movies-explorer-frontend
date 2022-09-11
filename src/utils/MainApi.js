@@ -104,7 +104,7 @@ class Api {
       headers: this._headers,
       credentials: 'include',
       body: JSON.stringify({
-        country: value.country,
+        country: value.country ? value.country : 'Неизвестно',
         director: value.director,
         duration: value.duration,
         year: value.year,
@@ -120,7 +120,7 @@ class Api {
   }
 
   deleteCard(id) {
-    return fetch(`${this.url}/${id}`, {
+    return fetch(`${this.url}/${'movies'}/${id}`, {
       method: 'DELETE',
       headers: this._headers,
       credentials: 'include',
