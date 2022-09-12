@@ -12,7 +12,7 @@ function MoviesCard(props) {
     if (props.movieInfo.id === apiMovieCard.movieId) {
       return apiMovieCard;
     }
-    return console.log('Произошла ошибка');
+    return console.log('end');
   }
 
   const isOwnCard = props.savedMovies.some(
@@ -49,7 +49,6 @@ function MoviesCard(props) {
 
   function handleMovieCard() {
     if (isOwnCard) {
-      console.log('Delte Card');
       handleDeleteMovie();
       setAddClass('movies-card__like');
     } else {

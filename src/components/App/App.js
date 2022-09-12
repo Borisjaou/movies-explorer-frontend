@@ -24,6 +24,12 @@ import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
+  const getStorageSearchItem = JSON.parse(localStorage.getItem('search'));
+  const savedSearchItem = getStorageSearchItem === null ? '' : getStorageSearchItem;
+
+  const getStorageShort = JSON.parse(localStorage.getItem('short'));
+  const savedShort = getStorageShort === undefined || null ? false : getStorageShort;
+
   const history = useHistory();
   const [errorMessage, setErrorMessage] = React.useState('');
   const [currentUser, setCurrentUser] = React.useState({});
@@ -33,8 +39,8 @@ function App() {
   const [savedMovies, setSavedMovies] = React.useState([]);
 
   const [movieItem, setMovieItem] = React.useState([]);
-  const [searchItem, setSearchItem] = React.useState('');
-  const [short, setShort] = React.useState(false);
+  const [searchItem, setSearchItem] = React.useState(savedSearchItem);
+  const [short, setShort] = React.useState(savedShort);
 
   React.useEffect(() => {
     api
@@ -67,7 +73,6 @@ function App() {
       .then((user) => {
         setCurrentUser(user);
         setLoggedIn(true);
-        console.log(user);
       })
       .catch((value) => {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
@@ -118,10 +123,16 @@ function App() {
   function handleSignOut() {
     api
       .logOut()
-      .then(() => {
+      .then((i) => {
         setLoggedIn(false);
+        console.log(localStorage);
+        console.log(i);
+
         localStorage.clear();
-        history.push('/signin');
+        setSavedMovies([]);
+        setMovieItem([]);
+        setSearchItem('');
+        setShort(false);
       })
       .catch((value) => {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
@@ -183,8 +194,6 @@ function App() {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
       });
   }
-
-  console.log(savedMovies);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

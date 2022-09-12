@@ -5,20 +5,34 @@ import searchIcon from '../../../images/searchIcon.svg';
 
 function SearchForm(props) {
   const savedRequest = JSON.parse(localStorage.getItem('search'));
-  const getStorageSearch = savedRequest === null ? '' : savedRequest;
-
-  console.log(getStorageSearch);
-  console.log(savedRequest);
+  function getStorageSearch() {
+    if (window.location.pathname === '/movies') {
+      return savedRequest === null ? '' : savedRequest;
+    }
+    if (window.location.pathname === '/saved-movies') {
+      return '';
+    }
+    return console.log('Произошла ошибка');
+  }
 
   const savedCheck = JSON.parse(localStorage.getItem('short'));
-  const getStorageCheck = savedCheck === null ? false : savedCheck;
+  function getStorageCheck() {
+    if (window.location.pathname === '/movies') {
+      return savedCheck === null || undefined ? false : savedCheck;
+    }
+    if (window.location.pathname === '/saved-movies') {
+      return false;
+    }
+    return console.log('Произошла ошибка');
+  }
 
   const [searchError, setSearchError] = useState('');
   const [searchRequest, setSearchRequest] = useState(getStorageSearch);
   const [isValid, setIsValid] = useState(false);
   const [checked, setChecked] = useState(getStorageCheck);
-  console.log(checked);
+
   const searchRegExp = /^[?':!,.а-яА-ЯёЁa-zA-Z0-9\s]+$/;
+
   function handleInputSearch(e) {
     setSearchRequest(e.target.value);
     if (!new RegExp(searchRegExp).test(e.target.value)) {
