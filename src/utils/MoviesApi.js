@@ -19,12 +19,16 @@ class Search {
   searchMovie() {
     return fetch(this.url, {
       method: 'GET',
+      headers: this._headers,
     }).then(this._checkResponse);
   }
 }
 
 const options = {
   baseUrl: 'https://api.nomoreparties.co/beatfilm-movies',
+  headers: {
+    'Content-Type': 'application/json',
+  },
 };
 
 export const search = new Search(options);

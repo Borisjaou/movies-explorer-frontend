@@ -4,27 +4,22 @@ import './MoviesCard.css';
 import cross from '../../../images/icon-delete.svg';
 
 function MoviesCard(props) {
+  /*   console.log(props);
+    console.log(props.savedMovies);
+    console.log(props.movieInfo.id);
+    console.log(props.savedMovies.movieId); */
   const [addClass, setAddClass] = React.useState('');
   const serverMovieCard = props.savedMovies.find((e) => e._id === props.movieInfo._id);
   const apiMovieCard = props.savedMovies.find((e) => e.movieId === props.movieInfo.id);
+  const isOwnCard = props.savedMovies.some(
+    (i) => i.movieId === props.movieInfo.id || props.savedMovies.movieId,
+  );
 
   function compareId() {
     if (props.movieInfo.id === apiMovieCard.movieId) {
       return apiMovieCard;
     }
     return console.log('end');
-  }
-
-  const isOwnCard = props.savedMovies.some(
-    (i) => i.movieId === props.movieInfo.id || props.movieInfo.movieId,
-  );
-
-  function movieLikeButtonClassName() {
-    if (isOwnCard) {
-      setAddClass('movies-card__like_active');
-    } else {
-      setAddClass('movies-card__like');
-    }
   }
 
   function convertTime(duration) {
@@ -47,6 +42,14 @@ function MoviesCard(props) {
     props.onDelete(serverMovieCard || compareId());
   }
 
+  function movieLikeButtonClassName() {
+    if (isOwnCard) {
+      setAddClass('movies-card__like_active');
+    } else {
+      setAddClass('movies-card__like');
+    }
+  }
+
   function handleMovieCard() {
     if (isOwnCard) {
       handleDeleteMovie();
@@ -59,7 +62,7 @@ function MoviesCard(props) {
 
   React.useEffect(() => {
     movieLikeButtonClassName();
-  }, []);
+  }, [props.savedMovies]);
 
   return (
     <section>
@@ -102,7 +105,7 @@ function MoviesCard(props) {
                   src={cross}
                   alt='кнопка лайк'
                   type='button'
-                  onClick={handleMovieCard}
+                  onClick={handleDeleteMovie}
                 />
               </button>
             </div>

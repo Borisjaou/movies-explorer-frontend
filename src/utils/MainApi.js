@@ -2,19 +2,6 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable class-methods-use-this */
 
-/* Запросы к API */
-
-/*
-  - Карточка фильма.
-  - Лайк карточки. сохраняет на наш сервер карточку.
-  - Дизлайк карточкию. Удаляет ее из "Сохраненных", т.е. удаляем ее с сервера.
-
-  - Регистрация пользователя
-  - Авторизация пользователя
-  - Редакитрование пользователя
-
-*/
-
 class Api {
   constructor(config) {
     this.url = config.baseUrl;
@@ -27,14 +14,6 @@ class Api {
     }
     return Promise.reject(res.status);
   }
-
-  /* список сохраненных фильмов */
-  /*  listItem() {
-     return fetch(`${this._url}/${'movies'}`, {
-       headers: this._headers,
-       credentials: 'include',
-     }).then(this._checkResponse);
-   } */
 
   getUserInfo() {
     return fetch(`${this.url}/${'users'}/${'me'}`, {
@@ -122,7 +101,7 @@ class Api {
   deleteCard(id) {
     return fetch(`${this.url}/${'movies'}/${id}`, {
       method: 'DELETE',
-      headers: this._headers,
+
       credentials: 'include',
     }).then(this._checkResponse);
   }

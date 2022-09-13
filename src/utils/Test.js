@@ -1,115 +1,98 @@
-https://overcoder.net/q/1088900/reactjs-как-реализовать-кнопку-показать-больше
+class MainApi {
+  constructor(options) {
+    this._url = options.baseUrl;
+    this._headers = options.headers;
+  }
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      showMore: false
+  _handleOriginalResponse(res) {
+    if (!res.ok) {
+      return Promise.reject(res.status);
     }
-  }
-  handleClick() {
-    this.setState({ showMore: true })
-  }
-  render() {
-    const list = [
-      'list 1',
-      'list 2',
-      'item 3',
-      'item 4',
-      'item 5',
-      'item 6',
-      'item 7',
-      'item 8',
-      'item 9',
-      'item 10',
-      'item 11',
-      'item 12',
-      'item 12',
-      'item 14',
-      'item 15',
-      'item 16',
-      'item 17',
-      'item 18',
-    ]
-
-    const numberOfItems = this.state.showMore ? list.length : 10
-    return (
-      <div>
-        {list.slice(0, numberOfItems).map((item) => {
-          return (
-            <div>{item}</div>
-          )
-        })}
-        <button onClick={() => this.handleClick()}>Show more</button>
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('app')
-);
-
-import { useState, useEffect } from "react";
-// Usage
-function App() {
-  const size = useWindowSize();
-  return (
-    <div>
-      {size.width}px / {size.height}px
-    </div>
-  );
-}
-// Hook
-function useWindowSize() {
-  // Initialize state with undefined width/height so server and client renders match
-  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
-  const [windowSize, setWindowSize] = useState({
-    width: undefined,
-    height: undefined,
-  });
-  useEffect(() => {
-    // Handler to call on window resize
-    function handleResize() {
-      // Set window width/height to state
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    }
-    // Add event listener
-    window.addEventListener("resize", handleResize);
-    // Call handler right away so state gets updated with initial window size
-    handleResize();
-    // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", handleResize);
-  }, []); // Empty array ensures that effect is only run on mount
-  return windowSize;
-}
-
-
-import { useState, useEffect } from 'react';
-
-function getWindowDimensions() {
-  const { innerWidth: width, innerHeight: height } = window;
-  return {
-    width,
-    height
+    return Promise.resolve(res.json())
+      .then((data) => {
+        return { data, status: res.status }
+      })
   };
-}
 
-export default function useWindowDimensions() {
-  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+  register(data) {
+    return fetch(`${this._url}/signup`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify(data),
+    }).then(this._handleOriginalResponse);
+  };
 
-  useEffect(() => {
-    function handleResize() {
-      setWindowDimensions(getWindowDimensions());
-    }/*  */
+  authorize(data) {
+    return fetch(`${this._url}/signin`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify(data)
+    }).then(this._handleOriginalResponse);
+  };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  checkToken(token) {
+    return fetch(`${this._url}/users/me`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+    }).then(this._handleOriginalResponse);
+  };
 
-  return windowDimensions;
-}
+  updateCurrentUserProfile(data, token) {
+    return fetch(`${this._url}/users/me`, {
+      method: 'PATCH',
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email
+      })
+    }).then(this._handleOriginalResponse)
+  };
+
+  saveMovie(data, token) {
+    return fetch(`${this._url}/movies`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    }).then(this._handleOriginalResponse);
+  };
+
+  getSavedMovies(token) {
+    return fetch(`${this._url}/movies`, {
+      method: 'GET',
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${token}`
+      },
+    }).then(this._handleOriginalResponse)
+  };
+
+  deleteSavedMovie(id, token) {
+    return fetch(`${this._url}/movies/${id}`, {
+      method: 'DELETE',
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${token}`
+      },
+    }).then(this._handleOriginalResponse)
+  };
+};
+
+const OPTIONS = {
+  baseUrl: "https://api.diploma.sterkhov.nomoredomains.xyz",
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
+
+const mainApi = new MainApi(OPTIONS);
+
+export default mainApi;

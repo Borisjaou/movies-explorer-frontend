@@ -5,6 +5,7 @@ import searchIcon from '../../../images/searchIcon.svg';
 
 function SearchForm(props) {
   const savedRequest = JSON.parse(localStorage.getItem('search'));
+
   function getStorageSearch() {
     if (window.location.pathname === '/movies') {
       return savedRequest === null ? '' : savedRequest;
@@ -15,10 +16,10 @@ function SearchForm(props) {
     return console.log('Произошла ошибка');
   }
 
-  const savedCheck = JSON.parse(localStorage.getItem('short'));
+  const savedShort = JSON.parse(localStorage.getItem('short'));
   function getStorageCheck() {
     if (window.location.pathname === '/movies') {
-      return savedCheck === null || undefined ? false : savedCheck;
+      return savedShort === null || undefined ? false : savedShort;
     }
     if (window.location.pathname === '/saved-movies') {
       return false;
@@ -55,6 +56,10 @@ function SearchForm(props) {
     /* localStorage.clear(); */
     setChecked(e.target.checked);
   }
+
+  useEffect(() => {
+    getStorageCheck();
+  }, []);
 
   useEffect(() => {
     props.onChecked({

@@ -12,7 +12,6 @@ function MoviesCardList(props) {
   const [showMore, setShowMore] = React.useState(0);
   const [showMoreButton, setShowMoreButton] = React.useState('movies-card__more_hidden');
   const [showMessage, setShowMessage] = React.useState('card-list__message_hidden');
-  /* const [savedMovies, setSavedMovies] = React.useState([]); */
 
   React.useEffect(() => {
     if (filteredMovies.length === 0 && query.length !== 0) {
@@ -60,9 +59,6 @@ function MoviesCardList(props) {
     }
   }, [handleClickShowMore]);
 
-  /* console.log(filteredMovies);
-  console.log(getMovies()); */
-
   return (
     <section className='card-list'>
       <p className={showMessage}>Ничего не найдено</p>
@@ -88,28 +84,3 @@ function MoviesCardList(props) {
   );
 }
 export default MoviesCardList;
-
-/* {filteredMovies
-  .filter((item) => (!shortMovie || item.duration <= 40))
-  .map((item) => (
-    <MoviesCard
-      movieInfo={item}
-      key={item.id}
-    />
-  ))} */
-
-/*
-'Ничего не найдено';
-
-'Во время запроса произошла ошибка. Возможно, проблема с
-соединением или сервер недоступен. Подождите немного и попробуйте еще раз'
-const showCard = тут условия если есть фильтрованные карты то карты, если нет ничего не найдено
-
-const showMovie = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    return (<Preloader />)
-  })
-});
-showMovie
-
-*/

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import '../../vendor/normalize.css';
-import './App.css'; // глобальные стили страницы
+import './App.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Promo from '../Main/Promo/Promo';
@@ -11,7 +11,6 @@ import About from '../Main/About/About';
 import Portfolio from '../Main/Portfolio/Portfolio';
 import SearchForm from '../Movies/SearchForm/SearchForm';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
-/* import { auth } from '../../utils/Auth'; */
 import { api } from '../../utils/MainApi';
 import { search } from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -34,7 +33,6 @@ function App() {
   const [errorMessage, setErrorMessage] = React.useState('');
   const [currentUser, setCurrentUser] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(null);
-  /* const [isLoading, setIsLoading] = React.useState(false); */
 
   const [savedMovies, setSavedMovies] = React.useState([]);
 
@@ -43,18 +41,6 @@ function App() {
   const [short, setShort] = React.useState(savedShort);
 
   React.useEffect(() => {
-    api
-      .getMovies()
-      .then((items) => {
-        setSavedMovies(items);
-      })
-      .catch((value) => {
-        console.log(`Ошибка. Запрос не выполнен ${value}`);
-      });
-  }, []);
-
-  React.useEffect(() => {
-    /* setIsLoading(false); */
     search
       .searchMovie()
       .then((items) => {
@@ -64,8 +50,7 @@ function App() {
       .catch((value) => {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
       });
-    /* .finally(() => setIsLoading(false)); */
-  }, []);
+  }, [currentUser]);
 
   React.useEffect(() => {
     api
@@ -90,6 +75,18 @@ function App() {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
       });
   }, [history]);
+
+  React.useEffect(() => {
+    api
+      .getMovies()
+      .then((items) => {
+        const newArr = items.filter((e) => (e.owner === currentUser._id));
+        setSavedMovies(newArr);
+      })
+      .catch((value) => {
+        console.log(`Ошибка. Запрос не выполнен ${value}`);
+      });
+  }, [currentUser]);
 
   function handleLoginUser({ email, password }) {
     api
@@ -123,13 +120,9 @@ function App() {
   function handleSignOut() {
     api
       .logOut()
-      .then((i) => {
+      .then(() => {
         setLoggedIn(false);
-        console.log(localStorage);
-        console.log(i);
-
         localStorage.clear();
-        setSavedMovies([]);
         setMovieItem([]);
         setSearchItem('');
         setShort(false);
@@ -162,14 +155,14 @@ function App() {
     api
       .getMovies()
       .then((items) => {
-        setSavedMovies(items);
+        const newArr = items.filter((e) => (e.owner === currentUser._id));
+        setSavedMovies(newArr);
       })
       .catch((value) => {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
       });
   }
   function handleLike(movie) {
-    console.log(movie);
     api
       .createMovie(movie)
       .then((item) => {
@@ -183,7 +176,6 @@ function App() {
   }
 
   function handleMovieDelete(card) {
-    console.log(card);
     api
       .deleteCard(card._id)
       .then(() => {
@@ -210,7 +202,6 @@ function App() {
           </Route>
           <Route path='/movies'>
             <Header />
-            {/* <Movies movies={movieItem} search={searchItem} short={short} /> */}
             <SearchForm onSearch={handleSearch} onChecked={handelShort} />
             <ProtectedRoute
               loggedIn={loggedIn}
