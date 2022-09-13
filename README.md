@@ -1,6 +1,6 @@
 # movies-explorer-frontend
 
-ссылка на пулреквест https://github.com/Borisjaou/movies-explorer-frontend/pull/2
+ссылка на [пулреквест](https://github.com/Borisjaou/movies-explorer-frontend/pull/2)
 
 
 
