@@ -1,5 +1,6 @@
 # movies-explorer-frontend
-на сервер проект не заливал, облако заблокировано
+
+ссылка на пулреквест https://github.com/Borisjaou/movies-explorer-frontend/pull/2
 
 
 
