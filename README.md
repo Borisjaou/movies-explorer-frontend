@@ -1,6 +1,6 @@
 # movies-explorer-frontend
-на сервер проект не заливал, облако заблокировано
 
+https://github.com/Borisjaou/movies-explorer-frontend/pull/2
 
 
 your-movie-explorer-fr.nomoredomains.work
