@@ -4,10 +4,6 @@ import './MoviesCard.css';
 import cross from '../../../images/icon-delete.svg';
 
 function MoviesCard(props) {
-  /*   console.log(props);
-    console.log(props.savedMovies);
-    console.log(props.movieInfo.id);
-    console.log(props.savedMovies.movieId); */
   const [addClass, setAddClass] = React.useState('');
   const serverMovieCard = props.savedMovies.find((e) => e._id === props.movieInfo._id);
   const apiMovieCard = props.savedMovies.find((e) => e.movieId === props.movieInfo.id);

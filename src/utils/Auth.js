@@ -2,8 +2,6 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable class-methods-use-this */
 
-/* Аутентификация */
-
 class Auth {
   constructor(config) {
     this.url = config.baseUrl;
@@ -58,7 +56,7 @@ class Auth {
       credentials: 'include',
     }).then(this._checkResponse);
   }
-} // end of Api
+}
 
 const options = {
   baseUrl: 'https://your-movie-explorer.nomoredomains.work',

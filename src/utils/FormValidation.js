@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { omit } from 'lodash';
 import emailValidator from 'email-validator';
 
-// https://dev.to/codebucks/form-validation-in-reactjs-by-building-reusable-custom-hook-1bg7
-
 function useForm(props) {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
@@ -15,8 +13,8 @@ function useForm(props) {
   const [isEditValid, setIsEditValid] = useState(false);
 
   const validate = (e, name, value) => {
-    const passwordRegExp = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}/g;
-    const nameRegExp = /^(([a-zA-Z' \- \s]{2,30}))$/u;
+    const passwordRegExp = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}/g;
+    const nameRegExp = /^(([а-яА-ЯёЁa-zA-Z' \- \s]{2,30}))$/u;
 
     switch (name) {
       case 'userName':

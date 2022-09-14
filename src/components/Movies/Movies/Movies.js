@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Movies(props) {
-  /* console.log(localStorage); */
   const getStorageMovies = JSON.parse(localStorage.getItem('foundMovie'));
   const foundMovieList = getStorageMovies === null ? [] : getStorageMovies;
 
