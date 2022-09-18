@@ -89,7 +89,7 @@ class Api {
         year: value.year,
         description: value.year,
         image: `${'https://api.nomoreparties.co'}${value.image.url}`,
-        trailerLink: !value.trailerLink.includes('https') ? `${'https://www.youtuve.com'}` : value.trailerLink,
+        trailerLink: !value.trailerLink.includes('https') ? `${'https://www.youtube.com'}` : value.trailerLink,
         thumbnail: `${'https://api.nomoreparties.co'}${value.image.formats.thumbnail.url}`,
         movieId: value.id,
         nameRU: value.nameRU,
