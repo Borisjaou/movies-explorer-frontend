@@ -4,6 +4,9 @@ import './MoviesCard.css';
 import cross from '../../../images/icon-delete.svg';
 
 function MoviesCard(props) {
+  /* console.log(localStorage); */
+  console.log(props);
+
   const [addClass, setAddClass] = React.useState('');
   const serverMovieCard = props.savedMovies.find((e) => e._id === props.movieInfo._id);
   const apiMovieCard = props.savedMovies.find((e) => e.movieId === props.movieInfo.id);
@@ -38,13 +41,13 @@ function MoviesCard(props) {
     props.onDelete(serverMovieCard || compareId());
   }
 
-  function movieLikeButtonClassName() {
-    if (isOwnCard) {
-      setAddClass('movies-card__like_active');
-    } else {
-      setAddClass('movies-card__like');
-    }
-  }
+  /*   function movieLikeButtonClassName() {
+      if (isOwnCard) {
+        setAddClass('movies-card__like_active');
+      } else {
+        setAddClass('movies-card__like');
+      }
+    } */
 
   function handleMovieCard() {
     if (isOwnCard) {
@@ -56,9 +59,17 @@ function MoviesCard(props) {
     }
   }
 
+  /*   React.useEffect(() => {
+      movieLikeButtonClassName();
+    }, []); */
+
   React.useEffect(() => {
-    movieLikeButtonClassName();
-  }, [props.savedMovies]);
+    if (isOwnCard) {
+      setAddClass('movies-card__like_active');
+    } else {
+      setAddClass('movies-card__like');
+    }
+  }, [props]);
 
   return (
     <section>

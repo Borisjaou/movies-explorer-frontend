@@ -4,14 +4,6 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Profile.css';
 
 function Profile(props) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const currentUser = useContext(CurrentUserContext);
-  useEffect(() => {
-    setName(currentUser.name || '');
-    setEmail(currentUser.email || '');
-  }, [currentUser]);
-
   const {
     handleChange,
     errors,
@@ -19,6 +11,24 @@ function Profile(props) {
     isEditValid,
   } = useForm(props);
 
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const currentUser = useContext(CurrentUserContext);
+
+  useEffect(() => {
+    setName(currentUser.name || '');
+    setEmail(currentUser.email || '');
+  }, [currentUser]);
+
+  function handleChangeName(e) {
+    setName(e.target.value);
+    handleChange(e);
+  }
+
+  function handleChangeEmail(e) {
+    setEmail(e.target.value);
+    handleChange(e);
+  }
   return (
 
     <section className='profile'>
@@ -28,8 +38,8 @@ function Profile(props) {
           <div className='profile__form-field '>
             <label htmlFor='name'>Имя</label>
             <input
-              placeholder={name}
-              onChange={handleChange}
+              value={name}
+              onChange={handleChangeName}
               name='userName'
               className='profile__input'
               type='text'
@@ -42,8 +52,8 @@ function Profile(props) {
           <div className='profile__form-field'>
             <label htmlFor='email'>E-mail</label>
             <input
-              placeholder={email}
-              onChange={handleChange}
+              value={email}
+              onChange={handleChangeEmail}
               name='email'
               className='profile__input'
               type='email'

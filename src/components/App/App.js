@@ -15,12 +15,13 @@ import { api } from '../../utils/MainApi';
 import { search } from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import Preloader from '../Movies/Preloader/Preloader';
 
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
+
+import Popup from '../Popup/Popup';
 
 function App() {
   const getStorageSearchItem = JSON.parse(localStorage.getItem('search'));
@@ -39,42 +40,41 @@ function App() {
   const [movieItem, setMovieItem] = React.useState([]);
   const [searchItem, setSearchItem] = React.useState(savedSearchItem);
   const [short, setShort] = React.useState(savedShort);
+  const [popup, setPopup] = React.useState(false);
 
-  React.useEffect(() => {
-    search
-      .searchMovie()
-      .then((items) => {
-        localStorage.setItem('allMovies', JSON.stringify(items));
-        setMovieItem(items);
-      })
-      .catch((value) => {
-        console.log(`Ошибка. Запрос не выполнен ${value}`);
-      });
-  }, [currentUser]);
+  /*   React.useEffect(() => {
+      search
+        .searchMovie()
+        .then((items) => {
+          console.log('Сработка');
+          localStorage.setItem('allMovies', JSON.stringify(items));
+          setMovieItem(items);
+        })
+        .catch((value) => {
+          console.log(`Ошибка. Запрос не выполнен ${value}`);
+        });
+    }, []); */
 
   React.useEffect(() => {
     api
       .getUserInfo()
       .then((user) => {
+        console.log(user);
         setCurrentUser(user);
         setLoggedIn(true);
       })
       .catch((value) => {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
       });
-  }, []);
+  }, [loggedIn, history]);
 
   React.useEffect(() => {
-    api
-      .getUserInfo()
-      .then(() => {
-        setLoggedIn(true);
-      })
-      .catch((value) => {
-        setLoggedIn(false);
-        console.log(`Ошибка. Запрос не выполнен ${value}`);
-      });
-  }, [history]);
+    if (window.location.pathname === '/signup' || window.location.pathname === '/signin') {
+      history.push('/movies');
+    } else {
+      history.push(window.location.pathname);
+    }
+  }, [loggedIn, window.location.pathname]);
 
   React.useEffect(() => {
     api
@@ -86,7 +86,11 @@ function App() {
       .catch((value) => {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
       });
-  }, [currentUser]);
+  }, [currentUser, savedMovies]);
+
+  function showMessage() {
+    setTimeout(() => setPopup(false), 1000);
+  }
 
   function handleLoginUser({ email, password }) {
     api
@@ -102,6 +106,16 @@ function App() {
       .catch((value) => {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
         setErrorMessage('Что-то пошло не так');
+      });
+    search
+      .searchMovie()
+      .then((items) => {
+        console.log('Сработка');
+        localStorage.setItem('allMovies', JSON.stringify(items));
+        setMovieItem(items);
+      })
+      .catch((value) => {
+        console.log(`Ошибка. Запрос не выполнен ${value}`);
       });
   }
 
@@ -137,6 +151,8 @@ function App() {
       .editProfile(name, email)
       .then((user) => {
         setCurrentUser(user);
+        setPopup(true);
+        showMessage();
       })
       .catch((value) => {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
@@ -151,28 +167,30 @@ function App() {
     setShort(checked);
   }
 
-  function getInitialsMovies() {
-    api
-      .getMovies()
-      .then((items) => {
-        const newArr = items.filter((e) => (e.owner === currentUser._id));
-        setSavedMovies(newArr);
-      })
-      .catch((value) => {
-        console.log(`Ошибка. Запрос не выполнен ${value}`);
-      });
-  }
+  /*   function getInitialsMovies() {
+      api
+        .getMovies()
+        .then((items) => {
+          const newArr = items.filter((e) => (e.owner === currentUser._id));
+          setSavedMovies(newArr);
+        })
+        .catch((value) => {
+          console.log(`Ошибка. Запрос не выполнен ${value}`);
+        });
+    } */
+
   function handleLike(movie) {
     api
       .createMovie(movie)
       .then((item) => {
         setSavedMovies((state) => state.map((c) => (c.movieId === movie.movieId ? item : c)));
-        getInitialsMovies();
+        /* getInitialsMovies(); */
+        setPopup(true);
+        showMessage();
       })
       .catch((value) => {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
       });
-    console.log(savedMovies);
   }
 
   function handleMovieDelete(card) {
@@ -180,11 +198,15 @@ function App() {
       .deleteCard(card._id)
       .then(() => {
         setSavedMovies((state) => state.filter((item) => item._id !== card._id));
-        getInitialsMovies();
+        /* getInitialsMovies(); */
       })
       .catch((value) => {
         console.log(`Ошибка. Запрос не выполнен ${value}`);
       });
+  }
+
+  function handleGoBack() {
+    history.goBack();
   }
 
   return (
@@ -246,12 +268,13 @@ function App() {
           <Route path='/signup'>
             <Register onRegister={handleRegister} errorMessage={errorMessage} />
           </Route>
-          <Route path='/check'><Preloader /></Route>
+          <Route path='/check'><Popup /></Route>
           <Route path='*'>
-            <PageNotFound />
+            <PageNotFound onBack={handleGoBack} />
           </Route>
         </Switch>
       </main >
+      <Popup isOpen={popup} />
     </CurrentUserContext.Provider>
   );
 }

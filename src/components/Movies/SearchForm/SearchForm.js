@@ -59,7 +59,8 @@ function SearchForm(props) {
 
   useEffect(() => {
     getStorageCheck();
-  }, []);
+    getStorageSearch();
+  }, [window.location.pathname]);
 
   useEffect(() => {
     props.onChecked({

@@ -14,13 +14,14 @@ function Movies(props) {
     localStorage.setItem('short', JSON.stringify(props.short));
   }
   function updateQuery() {
-    setQuery(props.search);
-    localStorage.setItem('search', JSON.stringify(props.search));
     if (props.search.length && window.location.pathname === '/movies') {
       const data = showAllMovies
         .filter((item) => item.nameRU.toLowerCase().indexOf(props.search
           .toLowerCase()) >= 0
           && (!props.short || item.duration <= 40));
+      setQuery(props.search);
+      localStorage.setItem('search', JSON.stringify(props.search));
+
       setFilteredMovies(data);
       localStorage.setItem('foundMovie', JSON.stringify(data));
     }

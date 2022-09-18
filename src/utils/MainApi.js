@@ -89,7 +89,7 @@ class Api {
         year: value.year,
         description: value.year,
         image: `${'https://api.nomoreparties.co'}${value.image.url}`,
-        trailerLink: value.trailerLink,
+        trailerLink: !value.trailerLink.includes('https') ? `${'https://www.youtuve.com'}` : value.trailerLink,
         thumbnail: `${'https://api.nomoreparties.co'}${value.image.formats.thumbnail.url}`,
         movieId: value.id,
         nameRU: value.nameRU,
@@ -108,8 +108,8 @@ class Api {
 } // end of Api
 
 const options = {
-  baseUrl: 'https://your-movie-explorer.nomoredomains.work',
-  /* baseUrl: 'http://localhost:3002', */
+  /* baseUrl: 'https://your-movie-explorer.nomoredomains.work', */
+  baseUrl: 'http://localhost:3002',
   headers: {
     'Content-Type': 'application/json',
   },

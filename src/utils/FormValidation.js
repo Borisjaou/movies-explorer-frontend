@@ -11,6 +11,7 @@ function useForm(props) {
   const [isValid, setIsValid] = useState(false);
   const [isLoginValid, setIsLoginValid] = useState(false);
   const [isEditValid, setIsEditValid] = useState(false);
+  const [submit, setSubmit] = useState(false);
 
   const validate = (e, name, value) => {
     const passwordRegExp = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}/g;
@@ -67,7 +68,6 @@ function useForm(props) {
   };
 
   const handleChange = (e) => {
-    // to stop default events
     e.persist();
 
     const { name } = e.target;
@@ -82,6 +82,7 @@ function useForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSubmit(true);
     props.onRegister({
       name: values.userName,
       email: values.email,
@@ -117,6 +118,12 @@ function useForm(props) {
     if (nameError && emailError) {
       setIsEditValid(true);
     } else {
+      setIsEditValid(false);
+    }
+  });
+
+  useEffect(() => {
+    if (submit) {
       setIsEditValid(false);
     }
   });
