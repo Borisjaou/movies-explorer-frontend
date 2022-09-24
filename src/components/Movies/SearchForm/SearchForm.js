@@ -31,6 +31,7 @@ function SearchForm(props) {
   const [searchRequest, setSearchRequest] = useState(getStorageSearch);
   const [isValid, setIsValid] = useState(false);
   const [checked, setChecked] = useState(getStorageCheck);
+  console.log(checked);
 
   const searchRegExp = /^[?':!,.а-яА-ЯёЁa-zA-Z0-9\s]+$/;
 

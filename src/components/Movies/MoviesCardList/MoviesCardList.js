@@ -9,6 +9,8 @@ function MoviesCardList(props) {
     query,
   ] = Movies(props);
 
+  console.log(props);
+
   /* const [showMore, setShowMore] = React.useState(0); */
   const [showMoreButton, setShowMoreButton] = React.useState('movies-card__more_hidden');
   const [showMessage, setShowMessage] = React.useState('card-list__message_hidden');

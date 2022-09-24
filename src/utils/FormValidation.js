@@ -115,7 +115,7 @@ function useForm(props) {
   });
 
   useEffect(() => {
-    if (nameError && emailError) {
+    if (nameError || emailError) {
       setIsEditValid(true);
     } else {
       setIsEditValid(false);

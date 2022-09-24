@@ -5,7 +5,7 @@ import cross from '../../../images/icon-delete.svg';
 
 function MoviesCard(props) {
   /* console.log(localStorage); */
-  console.log(props);
+  /* console.log(props); */
 
   const [addClass, setAddClass] = React.useState('');
   const serverMovieCard = props.savedMovies.find((e) => e._id === props.movieInfo._id);
@@ -41,27 +41,13 @@ function MoviesCard(props) {
     props.onDelete(serverMovieCard || compareId());
   }
 
-  /*   function movieLikeButtonClassName() {
-      if (isOwnCard) {
-        setAddClass('movies-card__like_active');
-      } else {
-        setAddClass('movies-card__like');
-      }
-    } */
-
   function handleMovieCard() {
     if (isOwnCard) {
       handleDeleteMovie();
-      setAddClass('movies-card__like');
     } else {
       handleLike();
-      setAddClass('movies-card__like_active');
     }
   }
-
-  /*   React.useEffect(() => {
-      movieLikeButtonClassName();
-    }, []); */
 
   React.useEffect(() => {
     if (isOwnCard) {
@@ -69,7 +55,7 @@ function MoviesCard(props) {
     } else {
       setAddClass('movies-card__like');
     }
-  }, [props]);
+  }, [props.savedMovies]);
 
   return (
     <section>

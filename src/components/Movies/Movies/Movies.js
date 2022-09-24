@@ -1,6 +1,7 @@
 import React from 'react';
 
 function Movies(props) {
+  console.log(props);
   const getStorageMovies = JSON.parse(localStorage.getItem('foundMovie'));
   const foundMovieList = getStorageMovies === null ? [] : getStorageMovies;
 
@@ -10,9 +11,9 @@ function Movies(props) {
   const [query, setQuery] = React.useState('');
   const [filteredMovies, setFilteredMovies] = React.useState(foundMovieList);
 
-  function updateShort() {
-    localStorage.setItem('short', JSON.stringify(props.short));
-  }
+  /*   function updateShort() {
+      localStorage.setItem('short', JSON.stringify(props.short));
+    } */
   function updateQuery() {
     if (props.search.length && window.location.pathname === '/movies') {
       const data = showAllMovies
@@ -21,7 +22,7 @@ function Movies(props) {
           && (!props.short || item.duration <= 40));
       setQuery(props.search);
       localStorage.setItem('search', JSON.stringify(props.search));
-
+      localStorage.setItem('short', JSON.stringify(props.short));
       setFilteredMovies(data);
       localStorage.setItem('foundMovie', JSON.stringify(data));
     }
@@ -35,7 +36,7 @@ function Movies(props) {
   }
 
   React.useEffect(() => {
-    updateShort();
+    /* updateShort(); */
     updateQuery();
   }, [props]);
 
