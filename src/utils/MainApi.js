@@ -108,8 +108,8 @@ class Api {
 } // end of Api
 
 const options = {
-  /* baseUrl: 'https://your-movie-explorer.nomoredomains.work', */
-  baseUrl: 'http://localhost:3002',
+  baseUrl: 'https://your-movie-explorer.nomoredomains.work',
+  /* baseUrl: 'http://localhost:3002', */
   headers: {
     'Content-Type': 'application/json',
   },

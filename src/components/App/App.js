@@ -157,6 +157,7 @@ function App() {
   function handleUpdateUser({ name, email }) {
     api
       .editProfile(name, email)
+
       .then((user) => {
         setCurrentUser(user);
         setPopup(true);

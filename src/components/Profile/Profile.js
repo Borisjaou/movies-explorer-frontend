@@ -7,7 +7,7 @@ function Profile(props) {
   const {
     handleChange,
     errors,
-    handleSubmit,
+    handleUserEdit,
     isEditValid,
   } = useForm(props);
 
@@ -33,7 +33,7 @@ function Profile(props) {
 
     <section className='profile'>
       <h1 className='profile__header'>Привет, {name}</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleUserEdit}>
         <div className='profile__form'>
           <div className='profile__form-field '>
             <label htmlFor='name'>Имя</label>
@@ -44,7 +44,7 @@ function Profile(props) {
               className='profile__input'
               type='text'
               id='name'
-            /* required */
+              required
             />
           </div>
           <span className='profile__input-error'>{errors.userName}</span>
@@ -58,7 +58,7 @@ function Profile(props) {
               className='profile__input'
               type='email'
               id='email'
-            /* required */
+              required
             />
           </div>
           <span className='profile__input-error'>{errors.email}</span>

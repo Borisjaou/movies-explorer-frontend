@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { omit } from 'lodash';
 import emailValidator from 'email-validator';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function useForm(props) {
+  const currentUser = useContext(CurrentUserContext);
+
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [nameError, setNameError] = useState(false);
@@ -11,8 +14,8 @@ function useForm(props) {
   const [isValid, setIsValid] = useState(false);
   const [isLoginValid, setIsLoginValid] = useState(false);
   const [isEditValid, setIsEditValid] = useState(false);
-  const [submit, setSubmit] = useState(false);
-
+  /*   const [submit, setSubmit] = useState(false);
+   */
   const validate = (e, name, value) => {
     const passwordRegExp = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}/g;
     const nameRegExp = /^(([а-яА-ЯёЁa-zA-Z' \- \s]{2,30}))$/u;
@@ -82,7 +85,7 @@ function useForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmit(true);
+    /* setSubmit(true); */
     props.onRegister({
       name: values.userName,
       email: values.email,
@@ -95,6 +98,15 @@ function useForm(props) {
     props.onRegister({
       email: values.email,
       password: values.password,
+    });
+  };
+
+  const handleUserEdit = (e) => {
+    e.preventDefault();
+    setIsEditValid(false);
+    props.onRegister({
+      name: values.userName || currentUser.name,
+      email: values.email || currentUser.email,
     });
   };
 
@@ -120,13 +132,13 @@ function useForm(props) {
     } else {
       setIsEditValid(false);
     }
-  });
+  }, [values]);
 
-  useEffect(() => {
-    if (submit) {
-      setIsEditValid(false);
-    }
-  });
+  /*   useEffect(() => {
+      if (submit) {
+        setIsEditValid(false);
+      }
+    }); */
 
   return {
     values,
@@ -137,6 +149,7 @@ function useForm(props) {
     isEditValid,
     isValid,
     isLoginValid,
+    handleUserEdit,
   };
 }
 export default useForm;
