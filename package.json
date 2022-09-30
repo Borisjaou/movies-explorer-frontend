@@ -7,9 +7,11 @@
     "@testing-library/react": "^12.1.3",
     "@testing-library/user-event": "^13.5.0",
     "babel-eslint": "^10.1.0",
+    "email-validator": "^2.0.4",
+    "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router-dom": "^5.2.1",
+    "react-router-dom": "^5.3.0",
     "react-scripts": "5.0.0",
     "web-vitals": "^2.1.4"
   },
@@ -18,7 +20,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "npx eslint"
+    "lint": "npx eslint",
+    "deploy": "npm run build && scp -r ./build/* borisjaou@IP 158.160.1.114:/home/borisjaou/frontend"
   },
   "eslintConfig": {
     "extends": [

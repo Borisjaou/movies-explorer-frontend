@@ -1,7 +1,7 @@
 # movies-explorer-frontend
 
-ссылка на [пулреквест](https://github.com/Borisjaou/movies-explorer-frontend/pull/2)
 
+https://github.com/Borisjaou/movies-explorer-frontend/pull/2
 
 
 your-movie-explorer-fr.nomoredomains.work

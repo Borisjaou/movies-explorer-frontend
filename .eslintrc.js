@@ -22,5 +22,6 @@ module.exports = {
     'no-underscore-dangle': ['error', { allow: ['_id'] }],
     semi: ['error', 'always'],
     quotes: ['error', 'single'],
+    'react/prop-types': 'off',
   },
 };

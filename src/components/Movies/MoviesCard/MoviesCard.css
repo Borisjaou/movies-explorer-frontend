@@ -10,8 +10,9 @@
 .movies-card__image {
   object-fit: contain;
   align-self: center;
-  width: 100%;
+  max-width: 300px;
   max-height: 168px;
+  cursor: pointer;
 }
 
 .movies-card__inscription {
@@ -24,19 +25,35 @@
   color: #FFFFFF;
   font-size: 12px;
   line-height: 15px;
+  cursor: pointer;
 }
 
 .movies-card__like {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 24px;
   height: 24px;
   border-radius: 50px;
   cursor: pointer;
   border: none;
   background-color: #313131;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-image: url(../../../images/smallUnlikedButton.svg);
 }
+
+.movies-card__like_active {
+  width: 24px;
+  height: 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: none;
+  background-color: #313131;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-image: url(../../../images/smallLikedButton.svg);
+}
+
 .movies-card__delete {
   display: flex;
   justify-content: center;

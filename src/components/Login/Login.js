@@ -1,25 +1,52 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import useForm from '../../utils/FormValidation';
 import './Login.css';
 import logo from '../../images/logo.svg';
 
-function Login() {
+function Login(props) {
+  const {
+    handleChange,
+    errors,
+    handleLoginSubmit,
+    isLoginValid,
+  } = useForm(props);
   return (
     <section className='login'>
       <div className='login-container'>
         <a href='/' className='logo-button'><img src={logo} alt='логотип' /></a>
         <h1 className='login__header'>Рады видеть!</h1>
-        <form>
+        <form onSubmit={handleLoginSubmit}>
           <div className='login__input-container'>
             <label className='login__secondary-text' htmlFor='email'>E-mail</label>
-            <input className='login__input-text' id='email' type='email' />
-            <span className='login__input-error'>Что-то пошло не так...</span>
+            <input
+              onChange={handleChange}
+              name='email'
+              className='login__input-text'
+              id='email'
+              type='email'
+              required
+            />
+            <span className='login__input-error'>{errors.email}</span>
             <label className='login__secondary-text' htmlFor='password'>Пароль</label>
-            <input className='login__input-text' id='password' type='password' />
-            <span className='login__input-error'>Что-то пошло не так...</span>
+            <input
+              onChange={handleChange}
+              name='password'
+              className='login__input-text'
+              id='password'
+              type='password'
+              required
+            />
+            <span className='login__input-error'>{errors.password}</span>
           </div>
           <div className='login__button-container login__text'>
-            <button className='login__submit-button' type='submit'>Войти</button>
-            <p className='login__secondary-text login__text'>Ещ не зарегестрированы?<button className='login__enter-button login__text' type='button'>Регистрация</button></p>
+            <span className='register__input-error'>{props.errorMessage}</span>
+            <button
+              disabled={!isLoginValid}
+              className='login__submit-button'
+              type='submit'
+            >Войти</button>
+            <p className='login__secondary-text login__text'>Ещ не зарегестрированы?<Link to='signup' className='login__enter-button login__text' >Регистрация</Link></p>
           </div>
         </form>
       </div>
