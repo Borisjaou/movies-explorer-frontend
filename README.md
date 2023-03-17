@@ -2,7 +2,7 @@
 
 ## Movies Explorer Frontend
 
-Movies Explorer Frontend is a web interface that allows users to search for movies and save their favorite movies to a personal profile. This project was built using React and Create React App.
+Movies Explorer Frontend is a web interface that allows users to search for movies and save their favorite movies to a personal profile. This project was built using React.
 
 ### Features
 * Search movies by keyword or phrase
